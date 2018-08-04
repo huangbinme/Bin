@@ -5,7 +5,7 @@ import java.util.Set;
 
 /** 
 * @author Bin
-* @version 2018Äê7ÔÂ22ÈÕ ÉÏÎç1:19:15
+* @version 2018ï¿½ï¿½7ï¿½ï¿½22ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½1:19:15
 * @Description LeetCode link:https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
 */
 public class FindUnduplicateSubString {
@@ -14,7 +14,7 @@ public class FindUnduplicateSubString {
 		int strLength = s.length();
 		int left_pointer = 0;
 		int rigth_pointer = 0;
-		Set<Character> set = new HashSet<>();
+		Set<Character> set = new HashSet<Character>();
 		while (left_pointer < strLength && rigth_pointer < strLength) {
 			if (!set.contains(s.charAt(rigth_pointer))) {
 				set.add(s.charAt(rigth_pointer));
