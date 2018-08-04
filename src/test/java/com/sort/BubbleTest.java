@@ -6,11 +6,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-/** 
-* @author Bin
-* @version 2018年8月4日 下午9:45:44
-* @Description 
-*/
 public class BubbleTest {
 
 	@Test

@@ -4,11 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-/** 
-* @author Bin
-* @version 2018年7月23日 下午10:46:11
-* @Description 
-*/
 public class FindLongestPalindromicSubStringTest {
 
 	@Test

@@ -4,11 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-/** 
-* @author Bin
-* @version 2018年7月22日 上午1:29:00
-* @Description 
-*/
 public class ArrayListTest {
 
 	@Test

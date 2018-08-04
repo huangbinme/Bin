@@ -3,11 +3,6 @@ package com.solutions;
 import java.util.HashSet;
 import java.util.Set;
 
-/** 
-* @author Bin
-* @version 2018��7��22�� ����1:19:15
-* @Description LeetCode link:https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
-*/
 public class FindUnduplicateSubString {
 	public int lengthOfLongestSubstring(String s) {
 		int result = 0;

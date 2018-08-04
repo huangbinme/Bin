@@ -1,10 +1,5 @@
 package com.solutions;
 
-/**
- * @author Bin
- * @version 2018年7月23日 下午10:27:33
- * @Description
- */
 public class FindLongestPalindromicSubString {
 	
 	public boolean ifPalindromic(String str,int i,int j){

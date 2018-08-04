@@ -1,11 +1,5 @@
 package com.solutions;
 
-/** 
-* @author Bin
-* @version 2018年7月22日 上午1:19:15
-* @Description LeetCode link:https://leetcode-cn.com/problems/two-sum/
-*/
-
 public class FindTargetNumberInArray {
 	public int[] twoSum(int[] nums, int target) {
 	       int result_x = 0;

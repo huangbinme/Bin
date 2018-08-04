@@ -1,10 +1,5 @@
 package com.sort;
 
-/** 
-* @author Bin
-* @version 2018年8月4日 下午9:29:09
-* @Description 
-*/
 public class Bubble {
 	
 	public int[] bubbleSort(int[] input){

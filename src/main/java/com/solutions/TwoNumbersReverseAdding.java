@@ -3,11 +3,6 @@ package com.solutions;
 import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
-/** 
-* @author Bin
-* @version 2018年7月22日 上午1:19:15
-* @Description LeetCode link:https://leetcode-cn.com/problems/add-two-numbers/description/
-*/
 
 public class TwoNumbersReverseAdding {
 
