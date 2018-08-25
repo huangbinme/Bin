@@ -16,4 +16,4 @@ spring:
       label: master
       profile: dev
       url: http://localhost:8888/
-      enabled: true
+      enabled: false
