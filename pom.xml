@@ -2,28 +2,47 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.bin.learning.project</groupId>
   <artifactId>Java-EE-Learning</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-  
-  <properties>
-        <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
-        <junit.version>4.7</junit.version>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+    <modules>
+        <module>HelloSpringCloud</module>
+        <module>CommonDevelopProject</module>
+    </modules>
+
+    <properties>
+      <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
+      <junit.version>4.7</junit.version>
+      <commons-codec.version>1.9</commons-codec.version>
+      <org.apache.commons.version>1.3.2</org.apache.commons.version>
   </properties>
   
   <dependencies>
         <dependency>
-             <groupId>junit</groupId>
-             <artifactId>junit</artifactId>
-             <version>${junit.version}</version>
-             <scope>test</scope>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
+
+       <dependency>
+           <groupId>commons-codec</groupId>
+           <artifactId>commons-codec</artifactId>
+           <version>${commons-codec.version}</version>
+       </dependency>
+
+      <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-io</artifactId>
+          <version>${org.apache.commons.version}</version>
+      </dependency>
   </dependencies>
   
   <build>  
         <plugins>  
             <plugin>  
                 <groupId>org.apache.maven.plugins</groupId>  
-                <artifactId>-compiler-plugin</artifactId>  
-                <version>${maven.compiler.plugin.version}</version>  
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
                 <configuration>  
                     <source>1.8</source>  
                     <target>1.8</target>
