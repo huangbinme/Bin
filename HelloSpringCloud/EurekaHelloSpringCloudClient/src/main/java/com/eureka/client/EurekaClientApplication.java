@@ -24,4 +24,11 @@ public class EurekaClientApplication {
         return "hello world from port " + port;
     }
 
+    @Value("${hello}")
+    String hello;
+    @RequestMapping(value = "/hello/service")
+    public String hello(){
+        return hello;
+    }
+
 }

@@ -10,8 +10,13 @@ spring:
     config:
       label: master
       profile: dev
-      url: http://localhost:8888/
-      enabled: true
+      discovery:
+        enabled: true
+        service-id: config-server
 
 server:
   port: 8882
+
+management:
+  security:
+    enabled: false
