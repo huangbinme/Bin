@@ -17,16 +17,9 @@ public class EurekaClientApplication {
         SpringApplication.run(EurekaClientApplication.class, args);
     }
 
-    @Value("${server.port}")
-    String port;
-    @RequestMapping("/hello")
-    public String home() {
-        return "hello world from port " + port;
-    }
-
     @Value("${hello}")
     String hello;
-    @RequestMapping(value = "/hello/service")
+    @RequestMapping(value = "/hello")
     public String hello(){
         return hello;
     }
