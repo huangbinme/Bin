@@ -9,9 +9,11 @@ eureka:
        fetchRegistry: false
 
 spring:
+  application:
+    name: eureka-server
   cloud:
     config:
+      label: master
+      profile: dev
+      url: http://localhost:8888/
       enabled: true
-
-profiles:
-  dev
