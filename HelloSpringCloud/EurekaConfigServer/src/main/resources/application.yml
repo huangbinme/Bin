@@ -1,7 +1,7 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8760/eureka/
 server:
   port: 8888
 
@@ -10,7 +10,7 @@ spring:
     config:
       server:
         git:
-          uri: https://git.oschina.net/chrywhy/test
-          searchPaths: spring-cloud/helloworldConfig
-  application:
+          uri: https://github.com/huangbin082/Bin
+          searchPaths: HelloSpringCloud/EurekaConfig
+application:
     name: config-server

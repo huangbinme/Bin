@@ -16,6 +16,7 @@
         <module>EurekaHelloSpringCloudClient</module>
         <module>EurekaConfigServer</module>
         <module>EurekaConfig</module>
+        <module>EurekaConfigClient</module>
     </modules>
 
 
