@@ -24,4 +24,9 @@ public class EurekaClientApplication {
         return hello;
     }
 
+    @Value("${server.port}")
+    String port;
+    @RequestMapping("/checkport")
+    public String home() {return "hello world from port " + port;}
+
 }

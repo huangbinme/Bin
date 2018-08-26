@@ -14,5 +14,3 @@ spring:
         git:
           uri: https://github.com/huangbin082/Bin
           searchPaths: HelloSpringCloud/EurekaConfig
-application:
-    name: config-server
