@@ -3,25 +3,22 @@ package com.linearlist;
 public class LinearListByArray {
 
     private Object [] array;
+    private int size;
 
     public LinearListByArray(int size) {
+
         this.array = new Object[size];
+        this.size = 0;
     }
 
     public LinearListByArray() {
+
         this.array = new Object[1000];
+        this.size = 0;
     }
 
     public int size(){
-        int size = 0;
-        for(int i=0;i<array.length;i++){
-            if(array[i]!=null){
-                size++;
-            }else {
-                break;
-            }
-        }
-        return size;
+        return this.size;
     }
 
     public void print(){
@@ -37,12 +34,13 @@ public class LinearListByArray {
     }
 
     public void add(Object obj){
-        int location = size();
+        int location = this.size;
         array[location]=obj;
+        this.size++;
     }
 
     public Object find(int location){
-        if(location<0||location>size()-1){
+        if(location<0||location>this.size-1){
             return null;
         }else{
             return  array[location];
@@ -50,22 +48,21 @@ public class LinearListByArray {
     }
 
     public void add (Object obj,int index){
-        if(array[index]==null){
-            if(index==0){
-                array[0] = obj;
-            }else {
-                if(array[index-1]==null){
-                    System.out.print("Index out of bound error!");
-                }else {
-                    array[index] = obj;
-                }
-            }
+        int size = this.size;
+        if(index>size||index<0){
+            System.out.println("Index out of bound error");
+            return;
+        }
+
+        if(size==index){
+            array[index] = obj;
         }else {
-            for(int i = size();i>=index;i--){
+            for(int i=size-1;i>=index;i--){
                 array[i+1]=array[i];
             }
             array[index]=obj;
         }
+        this.size++;
     }
 
     public void delete(int index){
@@ -77,12 +74,13 @@ public class LinearListByArray {
         if(array[index+1]==null){
             array[index]=null;
         }else {
-            int size = size();
+            int size = this.size;
             for(int i=index+1;i<size;i++){
                 array[i-1] = array[i];
             }
             array[size-1]=null;
         }
+        this.size--;
     }
 
 }
