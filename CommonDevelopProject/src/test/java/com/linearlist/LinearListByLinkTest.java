@@ -58,6 +58,23 @@ public class LinearListByLinkTest {
     }
 
     @Test
+    public void addByIndex() {
+        LinearListByLink list = new LinearListByLink();
+        list.add(0);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add("hello",1);
+        Assert.assertEquals(list.find(1).toString(),"hello");
+        list.add("hello2",0);
+        Assert.assertEquals(list.find(0).toString(),"hello2");
+        list.add("hello3",6);
+        Assert.assertEquals(list.find(6).toString(),"hello3");
+        list.add("hello4",999);//will throw outbound error
+
+    }
+
+    @Test
     public void delete() {
         LinearListByLink list = new LinearListByLink();
         list.add(0);
@@ -78,6 +95,7 @@ public class LinearListByLinkTest {
         list.delete(0);
         list.add(999);
         Assert.assertEquals(list.find(0),999);
+        Assert.assertEquals(list.size(),1);
         list.delete(999);//will throw outbound error
     }
 }

@@ -62,13 +62,41 @@ public class LinearListByLink {
 
         if(index==0){
             this.node = this.node.next;
+            this.size--;
             return;
         }
 
         Node tmp = this.node;
-        for(int i=0;i<=index+1;i++){
+        for(int i=0;i<index;i++){
             if(i==index-1){
                 tmp.next=tmp.next.next;
+                this.size--;
+                break;
+            }
+            tmp = tmp.next;
+        }
+    }
+
+    public void  add(Object obj,int index){
+        if(index<0||index>this.size){
+            System.out.println("Index out of bound error!");
+            return;
+        }
+
+        if(index==0){
+            Node nd = new Node(obj);
+            nd.next=this.node;
+            this.node = nd;
+            this.size++;
+            return;
+        }
+        Node tmp = this.node;
+        Node nd = new Node(obj);
+        for(int i=0;i<index;i++){
+            if(i==index-1){
+                nd.next=tmp.next;
+                tmp.next=nd;
+                this.size++;
                 break;
             }
             tmp = tmp.next;
