@@ -9,10 +9,6 @@ import javax.management.remote.JMXConnectorServerFactory;
 import javax.management.remote.JMXServiceURL;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-
-import com.sun.jdmk.comm.HtmlAdaptorServer;
 
 public class HelloAgent {
     public static void main(String[] args) throws Exception {

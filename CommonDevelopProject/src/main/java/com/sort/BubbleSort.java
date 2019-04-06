@@ -1,8 +1,8 @@
 package com.sort;
 
-public class Bubble {
+public class BubbleSort {
 	
-	public int[] bubbleSort(int[] input){
+	public static int[] sort(int[] input){
 		boolean ifBreak = true;
 		int j = input.length-1;
 		while(ifBreak){
