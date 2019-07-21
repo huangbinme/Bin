@@ -7,6 +7,7 @@
     <modules>
         <module>HelloSpringCloud</module>
         <module>CommonDevelopProject</module>
+        <module>BackupFiles</module>
     </modules>
 
 
