@@ -5,7 +5,6 @@
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
     <modules>
-        <module>HelloSpringCloud</module>
         <module>CommonDevelopProject</module>
         <module>BackupFiles</module>
     </modules>
