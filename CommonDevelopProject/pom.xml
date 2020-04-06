@@ -14,6 +14,7 @@
         <commons-codec.version>1.9</commons-codec.version>
         <org.apache.commons.version>1.3.2</org.apache.commons.version>
         <edu.princeton.cs.version>1.0.3</edu.princeton.cs.version>
+        <org.apache.commons.commons-lang3.version>3.9</org.apache.commons.commons-lang3.version>
     </properties>
 
     <dependencies>
@@ -40,6 +41,12 @@
             <groupId>edu.princeton.cs</groupId>
             <artifactId>algs4</artifactId>
             <version>${edu.princeton.cs.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${org.apache.commons.commons-lang3.version}</version>
         </dependency>
 
     </dependencies>

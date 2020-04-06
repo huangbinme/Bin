@@ -1,6 +1,7 @@
 package com.experiment.UF;
 
 import com.util.CommonConfigConstant;
+import org.apache.commons.lang3.time.StopWatch;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,13 +9,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class Demo {
     public static void main(String[] args) throws IOException {
-        String fileName = "tinyUF.txt";
+        //String fileName = "tinyUF.txt";
         //String fileName = "largeUF.txt";
+        String fileName = "mediumUF.txt";
         Path path = Paths.get(CommonConfigConstant.algsDataFilesRootDir+"//"+fileName);
+        System.out.println(String.format("Processing file [%s]",path.toAbsolutePath().toString()));
         List<String> stringList = Files.lines(path).map(String::trim).collect(Collectors.toList());
         Integer n = Integer.valueOf(stringList.get(0));
         List<List<Integer>> inputNodePair =  stringList.stream()
@@ -28,14 +32,23 @@ public class Demo {
                     return integers;
                 })
                 .collect(Collectors.toList());
-        System.out.println(String.format("Init N number is [%s]",n));
-        UnionFind unionFind = new UnionFind(n);
+
+        UnionFind uf = new QuickFind(n);
+        Demo.cal(inputNodePair,uf);
+
+        UnionFind uf2 = new QuickUnion(n);
+        Demo.cal(inputNodePair,uf2);
+    }
+
+    public static void cal(List<List<Integer>> inputNodePair, UnionFind uf){
+        StopWatch stopWatch = StopWatch.createStarted();
         inputNodePair.stream()
                 .forEach(integers -> {
-                    if(unionFind.notConnected(integers.get(0),integers.get(1))){
-                        unionFind.union(integers.get(0),integers.get(1));
+                    if(uf.notConnected(integers.get(0),integers.get(1))){
+                        uf.union(integers.get(0),integers.get(1));
                     }
                 });
-        System.out.println(String.format("Result component number is [%s]",unionFind.count()));
+        stopWatch.stop();
+        System.out.println(String.format("Result number is [%s] by [%s], time is [%s] MILLISECONDS", uf.count(),uf.getClass().getName(),stopWatch.getTime(TimeUnit.MILLISECONDS)));
     }
 }
