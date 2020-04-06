@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 public class Demo {
     public static void main(String[] args) throws IOException {
         //String fileName = "tinyUF.txt";
-        //String fileName = "largeUF.txt";
-        String fileName = "mediumUF.txt";
+        String fileName = "largeUF.txt";
+        //String fileName = "mediumUF.txt";
         Path path = Paths.get(CommonConfigConstant.algsDataFilesRootDir+"//"+fileName);
         System.out.println(String.format("Processing file [%s]",path.toAbsolutePath().toString()));
         List<String> stringList = Files.lines(path).map(String::trim).collect(Collectors.toList());
@@ -33,11 +33,14 @@ public class Demo {
                 })
                 .collect(Collectors.toList());
 
-        UnionFind uf = new QuickFind(n);
-        Demo.cal(inputNodePair,uf);
+//        UnionFind uf = new QuickFind(n);
+//        Demo.cal(inputNodePair,uf);
+//
+//        UnionFind uf2 = new QuickUnion(n);
+//        Demo.cal(inputNodePair,uf2);
 
-        UnionFind uf2 = new QuickUnion(n);
-        Demo.cal(inputNodePair,uf2);
+        UnionFind uf3 = new WeightedQuickUnion(n);
+        Demo.cal(inputNodePair,uf3);
     }
 
     public static void cal(List<List<Integer>> inputNodePair, UnionFind uf){
@@ -49,6 +52,6 @@ public class Demo {
                     }
                 });
         stopWatch.stop();
-        System.out.println(String.format("Result number is [%s] by [%s], time is [%s] MILLISECONDS", uf.count(),uf.getClass().getName(),stopWatch.getTime(TimeUnit.MILLISECONDS)));
+        System.out.println(String.format("Result number is [%s] by [%s], time is [%s] MICROSECONDS", uf.count(),uf.getClass().getName(),stopWatch.getTime(TimeUnit.MICROSECONDS)));
     }
 }
