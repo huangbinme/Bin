@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class Demo {
     public static void main(String[] args) throws IOException {
         //String fileName = "tinyUF.txt";
-        String fileName = "largeUF.txt";
+        String fileName = "largeUF.txt";//Only WeightedQuickUnion method could handle such file
         //String fileName = "mediumUF.txt";
         Path path = Paths.get(CommonConfigConstant.algsDataFilesRootDir+"//"+fileName);
         System.out.println(String.format("Processing file [%s]",path.toAbsolutePath().toString()));
