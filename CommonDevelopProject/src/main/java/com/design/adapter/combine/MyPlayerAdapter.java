@@ -1,4 +1,4 @@
-package com.design.adapter;
+package com.design.adapter.combine;
 
 public class MyPlayerAdapter implements PlayerAdapter{
     private AudioPlayer audioPlayer = new MyAudioPlayer();

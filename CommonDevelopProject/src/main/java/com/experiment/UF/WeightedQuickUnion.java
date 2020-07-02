@@ -51,7 +51,6 @@ public class WeightedQuickUnion implements UnionFind{
         for (int i = 0; i < n; i++) {
             ids[i] = i;
         }
-
         for (int i = 0; i < n; i++) {
             treeHeight[i] = 1;
         }

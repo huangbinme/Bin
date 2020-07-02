@@ -1,4 +1,4 @@
-package com.design.adapter;
+package com.design.adapter.combine;
 
 public interface VedioPlayer {
     void playVedio(String file);

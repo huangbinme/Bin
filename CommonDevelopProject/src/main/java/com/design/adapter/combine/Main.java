@@ -1,4 +1,4 @@
-package com.design.adapter;
+package com.design.adapter.combine;
 
 public class Main {
     public static void main(String[] args) {
