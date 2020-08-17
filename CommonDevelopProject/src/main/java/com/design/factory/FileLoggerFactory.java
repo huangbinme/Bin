@@ -1,4 +1,4 @@
-package com.design.methodFactory;
+package com.design.factory;
 
 public class FileLoggerFactory implements Factory{
     @Override

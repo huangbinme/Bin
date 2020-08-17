@@ -1,4 +1,4 @@
-package com.design.methodFactory;
+package com.design.factory;
 
 public class DatabaseFactory implements Factory{
     @Override
