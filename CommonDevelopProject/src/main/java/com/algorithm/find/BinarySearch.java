@@ -1,4 +1,4 @@
-package com.algorithem.find;
+package com.algorithm.find;
 
 public class BinarySearch {
     public static void main(String[] args) {

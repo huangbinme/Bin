@@ -1,4 +1,4 @@
-package com.algorithem.find;
+package com.algorithm.find;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

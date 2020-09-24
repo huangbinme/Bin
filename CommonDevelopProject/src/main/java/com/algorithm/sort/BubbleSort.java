@@ -1,8 +1,9 @@
-package com.algorithem.sort;
+package com.algorithm.sort;
 
-public class BubbleSort {
-	
-	public static int[] sort(int[] input){
+public class BubbleSort implements BaseSort{
+
+	@Override
+	public int[] sort(int[] input){
 		boolean ifBreak = true;
 		int j = input.length-1;
 		while(ifBreak){

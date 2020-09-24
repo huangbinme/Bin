@@ -1,7 +1,9 @@
-package com.algorithem.sort;
+package com.algorithm.sort;
 
-public class ShellSort {
-    public static int[] sort(int[] input){
+public class ShellSort implements BaseSort{
+
+    @Override
+    public int[] sort(int[] input){
         int increment = input.length;
         while(true){
             increment = increment/2;
