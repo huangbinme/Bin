@@ -29,6 +29,7 @@ public class Demo {
         Demo demo = new Demo();
         demo.runScript(conn);
         System.out.println(demo.readAllStudent());
+        System.exit(0);
     }
 
     public SessionFactory getSessionFactory() {
