@@ -10,10 +10,7 @@ public class BubbleSort implements BaseSort{
 			ifBreak = false;		
 			for(int i = 0;i<j;i++){
 				if(input[i]>input[i+1]){
-					int a = input[i];
-					int b = input[i+1];
-					input [i+1] = a;
-					input [i] = b;
+					SortingUtil.exchange(input,i,i+1);
 					ifBreak=true;
 				}				
 			}

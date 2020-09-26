@@ -1,26 +1,22 @@
 package com.algorithm.sort;
 
 public class ShellSort implements BaseSort{
-
     @Override
     public int[] sort(int[] input){
-        int increment = input.length;
-        while(true){
-            increment = increment/2;
-            for (int i=0;i<increment;i++) {
-                for(int j=i;j<input.length;j+=increment){
-                    int location=j;
-                    while(location>i&&input[location-increment]>input[location]){
-                        int tmp = input[location];
-                        input[location] = input[location-increment];
-                        input[location-increment] = tmp;
-                        location-=increment;
+        int h = input.length/2;
+        while(h>=1){
+            for (int i = 0; i < h; i++) {
+                for (int j = i+h; j < input.length ; j=j+h) {
+                    for (int k = j-h; k >=0 ; k=k-h) {
+                        if(input[k]>input[k+h]){
+                            SortingUtil.exchange(input,k,k+h);
+                        }else {
+                            break;
+                        }
                     }
                 }
             }
-            if(increment<1){
-                break;
-            }
+            h=h/2;
         }
         return input;
     }
