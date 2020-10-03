@@ -1,4 +1,4 @@
-package com.solutions.thread;
+package com.thread.print;
 
 import java.util.concurrent.locks.Lock;
 
@@ -9,18 +9,18 @@ public class NumberThread implements Runnable{
     @Override
     public void run() {
         while (true){
-            if(printer.getNumber()>25){
+            if(printer.getNumber()>26){
+                printer.setOutputFlag(false);
                 break;
             }
 
             if(printer.isOutputFlag()){
-                lock.tryLock();
-
+                lock.lock();
                 try {
                     printer.numberPrint();
                 }finally {
-                    lock.unlock();
                     printer.setOutputFlag(false);
+                    lock.unlock();
                 }
             }else {
 

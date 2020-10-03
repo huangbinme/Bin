@@ -1,4 +1,4 @@
-package com.solutions.thread;
+package com.thread.print;
 
 public class Printer {
     private volatile boolean outputFlag = true;

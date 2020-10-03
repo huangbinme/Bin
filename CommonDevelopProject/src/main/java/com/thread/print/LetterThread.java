@@ -1,4 +1,4 @@
-package com.solutions.thread;
+package com.thread.print;
 
 import java.util.concurrent.locks.Lock;
 
@@ -10,17 +10,18 @@ public class LetterThread implements Runnable{
     public void run() {
         while (true){
             if(printer.getLetter()>25){
+                printer.setOutputFlag(true);
                 break;
             }
 
             if(!printer.isOutputFlag()){
-                lock.tryLock();
-
+                lock.lock();
                 try {
                     printer.letterPrint();
+
                 }finally {
-                    lock.unlock();
                     printer.setOutputFlag(true);
+                    lock.unlock();
                 }
             }else {
 

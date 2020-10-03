@@ -1,4 +1,4 @@
-package com.solutions.thread;
+package com.thread.print;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
