@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class CommonUtil {
     protected final static Logger LOGGER = LogManager.getLogger();
 
-    public static int[] getRandomIntArrayByLength(int length){
+    public static int[] getRandomIntArray(int length){
         int [] result = new int[length];
         for(int i=0 ; i<length ; i++){
             result[i] = i;

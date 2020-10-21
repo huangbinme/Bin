@@ -13,14 +13,15 @@ public class SortingComparing {
 
     @Test
     public void sort() {
-        int sortingArrayLength = 100000;
-        int[] input = CommonUtil.getRandomIntArrayByLength(sortingArrayLength);
+        int sortingArrayLength = 10000;
+        int[] input = CommonUtil.getRandomIntArray(sortingArrayLength);
         LOGGER.info("Input array length [{}]",sortingArrayLength);
         List<BaseSort> baseSortList = new ArrayList<>();
-        baseSortList.add(new ShellSort());
+        //baseSortList.add(new ShellSort());
 //        baseSortList.add(new BubbleSort());
 //        baseSortList.add(new SelectSort());
 //        baseSortList.add(new InsertSort());
+        baseSortList.add(new MergeSort());
         baseSortList.forEach(baseSort -> CommonUtil.sortThenPrintTime(baseSort, Arrays.copyOf(input,input.length)));
     }
 }
