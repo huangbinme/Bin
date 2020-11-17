@@ -17,11 +17,12 @@ public class SortingComparing {
         int[] input = CommonUtil.getRandomIntArray(sortingArrayLength);
         LOGGER.info("Input array length [{}]",sortingArrayLength);
         List<BaseSort> baseSortList = new ArrayList<>();
-        //baseSortList.add(new ShellSort());
+//        baseSortList.add(new ShellSort());
 //        baseSortList.add(new BubbleSort());
 //        baseSortList.add(new SelectSort());
 //        baseSortList.add(new InsertSort());
-        baseSortList.add(new MergeSort());
+//        baseSortList.add(new MergeSort());
+        baseSortList.add(new QuickSort());
         baseSortList.forEach(baseSort -> CommonUtil.sortThenPrintTime(baseSort, Arrays.copyOf(input,input.length)));
     }
 }
