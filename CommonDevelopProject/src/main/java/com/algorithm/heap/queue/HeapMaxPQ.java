@@ -1,21 +1,32 @@
 package com.algorithm.heap.queue;
 
 public abstract class HeapMaxPQ<E extends Comparable> implements MaxPriorityQueue{
-    private E[] array;
+    protected E[] array;
+    protected int size = 0;
 
     @Override
     public void insert(Comparable key) {
-
+        if(size()>=array.length-1){
+            throw new IndexOutOfBoundsException(String.format("Max capacity of current array is [%s]",array.length-1));
+        }
+        array[size()+1] = (E)key;
+        swim(size()+1);
+        size++;
     }
 
     @Override
     public Comparable delMax() {
-        return null;
+        Comparable comparable = array[1];
+        exchange(1,size());
+        array[size()] = null;
+        sink(1);
+        size--;
+        return comparable;
     }
 
     @Override
     public Comparable max() {
-        return null;
+        return array[1];
     }
 
     @Override
@@ -25,13 +36,7 @@ public abstract class HeapMaxPQ<E extends Comparable> implements MaxPriorityQueu
 
     @Override
     public int size() {
-        return 0;
-    }
-
-    public void exchange(int i,int j){
-        E tmp = array[i];
-        array[i] = array[j];
-        array[j] = tmp;
+        return size;
     }
 
     public void swim(int i){
@@ -42,7 +47,16 @@ public abstract class HeapMaxPQ<E extends Comparable> implements MaxPriorityQueu
     }
 
     public void sink(int i){
-        while (2*i<=array.length){
+        while (i*2+1<array.length-1){
+            if(isLeafNode(i)){
+                break;
+            }
+            int max = getMaxIndex(i,i*2,i*2+1);
+            if(max==i){
+                break;
+            }
+            exchange(i,max);
+            i = max;
         }
     }
 
@@ -51,6 +65,12 @@ public abstract class HeapMaxPQ<E extends Comparable> implements MaxPriorityQueu
             return 0;
         }
         return (isNullNode(i*2)?0:1)+(isNullNode(i*2+1)?0:1);
+    }
+
+    public void exchange(int i,int j){
+        E tmp = array[i];
+        array[i] = array[j];
+        array[j] = tmp;
     }
 
     public boolean isLeafNode(int i){
@@ -71,5 +91,19 @@ public abstract class HeapMaxPQ<E extends Comparable> implements MaxPriorityQueu
 
     public boolean more(Comparable c1,Comparable c2){
         return c1.compareTo(c2)>0;
+    }
+
+    public int getMaxIndex(int parent, int left, int right){
+        if(isNullNode(left)){
+            return more(array[parent],array[right])?parent:right;
+        }
+
+        if(isNullNode(right)){
+            return more(array[parent],array[left])?parent:left;
+        }
+
+        int tmp = more(array[parent],array[right])?parent:right;
+        tmp =  more(array[tmp],array[left])?tmp:left;
+        return tmp;
     }
 }
