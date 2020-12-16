@@ -1,6 +1,8 @@
 package com.algorithm.heap.queue;
 
 public class IntegerHeapMaxPQ extends HeapMaxPQ<Integer>{
+    private int[] sortArray;
+
     public IntegerHeapMaxPQ(int initMaxSize) {
         super.array = new Integer[initMaxSize+1];
     }

@@ -16,7 +16,7 @@ public class InsertSort implements BaseSort {
     }
 
 
-    //This method might lead to error of StackOverflowError
+    /**This method might lead to error of StackOverflowError**/
     public void recursion(int[] input,int iterateIndex){
         if(iterateIndex>input.length-1){
             return;

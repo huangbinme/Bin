@@ -39,6 +39,10 @@ public abstract class HeapMaxPQ<E extends Comparable> implements MaxPriorityQueu
         return size;
     }
 
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     public void swim(int i){
         while (i>1&&more(array[i],array[i/2])){
             exchange(i,i/2);
@@ -47,10 +51,8 @@ public abstract class HeapMaxPQ<E extends Comparable> implements MaxPriorityQueu
     }
 
     public void sink(int i){
-        while (i*2+1<array.length-1){
-            if(isLeafNode(i)){
-                break;
-            }
+        while (!isLeafNode(i)){
+
             int max = getMaxIndex(i,i*2,i*2+1);
             if(max==i){
                 break;
@@ -94,6 +96,10 @@ public abstract class HeapMaxPQ<E extends Comparable> implements MaxPriorityQueu
     }
 
     public int getMaxIndex(int parent, int left, int right){
+        if (isLeafNode(parent)){
+            return parent;
+        }
+
         if(isNullNode(left)){
             return more(array[parent],array[right])?parent:right;
         }
