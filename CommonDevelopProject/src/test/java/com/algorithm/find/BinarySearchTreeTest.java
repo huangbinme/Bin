@@ -23,10 +23,11 @@ public class BinarySearchTreeTest extends TestCase {
         binarySearchTree.put(5,"5");
         binarySearchTree.put(1,"1");
         binarySearchTree.put(10,"1");
+        binarySearchTree.put(11,"1");
         binarySearchTree.put(8,"1");
         binarySearchTree.put(3,"1");
         binarySearchTree.put(5,"hello");
-        assertEquals("hello",binarySearchTree.get(5));
+        assertEquals("1",binarySearchTree.get(8));
     }
 
     public void testDelete() {
