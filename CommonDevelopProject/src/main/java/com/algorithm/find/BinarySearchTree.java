@@ -46,19 +46,19 @@ public class BinarySearchTree<Key extends Comparable, Value> implements ST<Key,V
     @Override
     public void delete(Key k) {
         root = delete(root,k);
+        this.size--;
     }
 
     private Node delete(Node node, Key k) {
-        if(node==null) return null;
-
+        if(node==null)return null;
         int cmp = node.getKey().compareTo(k);
         if(cmp>0){
             node.left = delete(node.left,k);
         }else if (cmp<0){
             node.right = delete(node.right,k);
         }else {
-            if(node.left==null) return node.right;
-            if(node.right==null) return node.left;
+            if(node.left==null)return node.right;
+            if(node.right==null)return node.left;
             Node tmp = node;
             Node rightMin = min(node.getRight());
             deleteMin(node.getRight());
@@ -148,10 +148,6 @@ public class BinarySearchTree<Key extends Comparable, Value> implements ST<Key,V
         sb.append(String.format("[%s]",root.getKey()));
         print(sb,root.getLeft());
         print(sb,root.getRight());
-    }
-
-    private int subNodeNumber(Node node){
-        return (node.getLeft()==null?0:1)+(node.getRight()==null?0:1);
     }
 
     public class Node{
