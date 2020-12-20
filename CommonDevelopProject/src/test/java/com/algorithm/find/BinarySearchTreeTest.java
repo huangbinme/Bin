@@ -31,6 +31,18 @@ public class BinarySearchTreeTest extends TestCase {
     }
 
     public void testDelete() {
+        BinarySearchTree binarySearchTree = new BinarySearchTree();
+        binarySearchTree.put(1,"1");
+        binarySearchTree.put(10,"1");
+        binarySearchTree.put(8,"1");
+        binarySearchTree.put(-3,"1");
+        binarySearchTree.put(7,"1");
+        binarySearchTree.put(6,"1");
+        binarySearchTree.put(5,"10");
+        binarySearchTree.put(4,"1");
+        binarySearchTree.delete(-3);
+        assertEquals(8,binarySearchTree.size());
+        assertEquals(1,binarySearchTree.min());
     }
 
     public void testContains() {
