@@ -1,11 +1,11 @@
 package com.algorithm.heap.queue;
 
-public abstract class HeapMaxPQ<E extends Comparable> implements MaxPriorityQueue{
+public abstract class HeapMaxPQ<E extends Comparable> implements MaxPriorityQueue<E>{
     protected E[] array;
     protected int size = 0;
 
     @Override
-    public void insert(Comparable key) {
+    public void insert(E key) {
         if(size()>=array.length-1){
             throw new IndexOutOfBoundsException(String.format("Max capacity of current array is [%s]",array.length-1));
         }
@@ -15,8 +15,8 @@ public abstract class HeapMaxPQ<E extends Comparable> implements MaxPriorityQueu
     }
 
     @Override
-    public Comparable delMax() {
-        Comparable comparable = array[1];
+    public E delMax() {
+        E comparable = array[1];
         exchange(1,size());
         array[size()] = null;
         sink(1);
@@ -25,7 +25,7 @@ public abstract class HeapMaxPQ<E extends Comparable> implements MaxPriorityQueu
     }
 
     @Override
-    public Comparable max() {
+    public E max() {
         return array[1];
     }
 

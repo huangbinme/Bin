@@ -1,10 +1,12 @@
 package com.algorithm.find;
 
-import java.util.Objects;
+import com.algorithm.find.api.ST;
 
-public class BinarySearchTree<Key extends Comparable<Key>, Value>{
+public class BinarySearchTree<Key extends Comparable, Value> implements ST<Key,Value> {
     private Node root;
+    private int size = 0;
 
+    @Override
     public Value get(Key k) {
         Node current = root;
         return get(current,k);
@@ -21,8 +23,14 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>{
         }
     }
 
+    @Override
     public void put(Key k, Value v) {
         Node current = root;
+        if(current==null){
+            this.root = new Node(k,v);
+            this.size++;
+            return;
+        }
         put(current,k,v);
     }
 
@@ -35,6 +43,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>{
             if(current.getLeft()==null){
                 Node node = new Node(k,v);
                 current.setLeft(node);
+                this.size++;
                 return;
             }else {
                 put(current.getLeft(),k,v);
@@ -43,6 +52,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>{
             if(current.getRight()==null){
                 Node node = new Node(k,v);
                 current.setRight(node);
+                this.size++;
                 return;
             }else {
                 put(current.getRight(),k,v);
@@ -50,22 +60,100 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>{
         }
     }
 
+    @Override
     public void delete(Key k) {
-
+        this.size--;
     }
 
+    @Override
     public boolean contains(Key k) {
-        return false;
+        return get(k)!=null;
     }
 
-    public BinarySearchTree(Node root) {
-        Objects.requireNonNull(root);
-        this.root = root;
+    @Override
+    public boolean isEmpty() {
+        return size()==0;
     }
-    public BinarySearchTree(Key k, Value v) {
-        Objects.requireNonNull(k);
-        Node node = new Node(k,v);
-        this.root = node;
+
+    @Override
+    public int size() {
+        return this.size;
+    }
+
+    @Override
+    public Key min() {
+        return min(root);
+    }
+
+    public Key min(Node node) {
+        if(node.getLeft()==null) return node.getKey();
+        return min(node.getLeft());
+    }
+
+    @Override
+    public Key max() {
+        return max(root);
+    }
+
+    public Key max(Node node) {
+        if(node.getRight()==null) return node.getKey();
+        return max(node.getRight());
+    }
+
+    @Override
+    public void deleteMin() {
+        if(root.getLeft()==null){
+            root = root.getRight();
+            this.size--;
+            return;
+        }
+        deleteMin(root);
+        this.size--;
+    }
+
+    public void deleteMin(Node node) {
+        if(node.getLeft().getLeft()==null){
+            node.setLeft(node.getLeft().getRight());
+            return;
+        }
+        deleteMin(node.getLeft());
+    }
+
+    @Override
+    public void deleteMax() {
+        if(root.getRight()==null){
+            root = root.getLeft();
+            this.size--;
+            return;
+        }
+        deleteMax(root);
+        this.size--;
+    }
+
+    public void deleteMax(Node node) {
+        if(node.getRight().getRight()==null){
+            node.setRight(node.getRight().getLeft());
+            return;
+        }
+        deleteMax(node.getRight());
+    }
+
+    @Override
+    public Iterable<Key> keys() {
+        return null;
+    }
+
+    public void print(){
+        StringBuilder sb = new StringBuilder();
+        print(sb,this.root);
+        System.out.println(sb.toString());
+    }
+
+    private void print(StringBuilder sb, Node root) {
+        if(root==null) return;
+        sb.append(String.format("[%s]",root.getKey()));
+        print(sb,root.getLeft());
+        print(sb,root.getRight());
     }
 
     public class Node{
