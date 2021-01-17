@@ -7,7 +7,7 @@ public class Solution_64 {
 
     public int dp(int[][] grid) {
         int k = grid.length;
-        int j = grid[1].length;
+        int j = grid[0].length;
         int[][] dp = new int[k][j];
         dp[0][0] = grid[0][0];
         for (int i = 0; i < k; i++) {

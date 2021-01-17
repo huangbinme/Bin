@@ -6,6 +6,10 @@ public class Solution_72 {
             return Math.max(word1.length(),word2.length());
         }
 
+        if(word1.equals(word2)){
+            return 0;
+        }
+
         int a = word1.length();
         int b = word2.length();
         int[][] dp = new int[a][b];
@@ -20,7 +24,7 @@ public class Solution_72 {
             }
         }
 
-        int index2 = word2.indexOf(word2.charAt(0));
+        int index2 = word2.indexOf(word1.charAt(0));
         for (int i = 0; i < b; i++) {
             dp[0][i] = i+1;
         }
