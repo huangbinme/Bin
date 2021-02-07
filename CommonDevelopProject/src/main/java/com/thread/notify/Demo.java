@@ -1,24 +1,22 @@
 package com.thread.notify;
 
-import java.util.List;
-
 public class Demo {
     public static void main(String[] args) {
-        ProductQueue productQueue = Builder.createProductQueue(20);
+        Queue queue = new Queue(10);
 
-        List<Consumer> consumerList = Builder.createConsumer(1);
-        List<Producer> producerList = Builder.createProducer(10);
+        Producer p1 = new Producer(queue);
+        Producer p2 = new Producer(queue);
+        Producer p3 = new Producer(queue);
 
-        consumerList.stream().forEach(consumer -> consumer.setProductQueue(productQueue));
-        producerList.stream().forEach(producer -> producer.setProductQueue(productQueue));
+        Consumer c1 = new Consumer(queue);
+        Consumer c2 = new Consumer(queue);
+        Consumer c3 = new Consumer(queue);
 
-        consumerList.stream().forEach(consumer -> {
-            Thread thread = new Thread(consumer);
-            thread.start();
-        });
-        producerList.stream().forEach(producer -> {
-            Thread thread = new Thread(producer);
-            thread.start();
-        });
+        p1.start();
+        p2.start();
+        p3.start();
+        c1.start();
+        c2.start();
+        c3.start();
     }
 }

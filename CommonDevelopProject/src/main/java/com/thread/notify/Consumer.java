@@ -1,46 +1,55 @@
 package com.thread.notify;
 
-public class Consumer implements Runnable{
-    private ProductQueue productQueue;
+import java.util.concurrent.TimeUnit;
+
+public class Consumer extends Thread {
+    private Queue queue;
+    private int timeToProduceWithSeconds = 2;
 
     @Override
     public void run() {
-        while (true){
-            synchronized (productQueue){
-                if(productQueue.isEmpty()){
-                    wait(productQueue);
-                }else {
-                    consumeProduct(productQueue.pop());
-                    productQueue.notifyAll();
-                    wait(productQueue);
-                }
+        while (true) {
+            consume();
+        }
+    }
+
+    public void consume() {
+        synchronized (queue) {
+            if (queue.blank()) {
+                waitToConsume(queue);
+            } else {
+                System.out.println(Thread.currentThread() + " is consuming " + queue.pop());
+                notifyToProduce(queue);
             }
         }
-
+        sleepToConsume(timeToProduceWithSeconds);
     }
 
-    private void wait(ProductQueue productQueue){
+
+    public void sleepToConsume(int time) {
         try {
-            productQueue.wait();
+            Thread.sleep(TimeUnit.SECONDS.toMillis(time));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    private void consumeProduct(Product product){
+    public void waitToConsume(Object o) {
         try {
-            Thread.sleep(1000);
+            o.wait();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(String.format("[%s] is consuming product : [%s]",Thread.currentThread().getName(),product.toString()));
     }
 
-    public ProductQueue getProductQueue() {
-        return productQueue;
+    public void notifyToProduce(Object o) {
+        synchronized (o) {
+            o.notifyAll();
+        }
     }
 
-    public void setProductQueue(ProductQueue productQueue) {
-        this.productQueue = productQueue;
+
+    public Consumer(Queue queue) {
+        this.queue = queue;
     }
 }

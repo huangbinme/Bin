@@ -1,50 +1,52 @@
 package com.thread.notify;
 
-public class Producer implements Runnable{
-    private ProductQueue productQueue;
-    private int produceNumber = 0;
+import java.util.concurrent.TimeUnit;
+
+public class Producer extends Thread {
+    private Queue queue;
+    private int timeToProduceWithSeconds = 1;
 
     @Override
     public void run() {
-        while (true){
-            synchronized (productQueue){
-                if(productQueue.isNotFull()){
-                    produceProduct(productQueue);
-                    productQueue.notifyAll();
-                    wait(productQueue);
-                }else {
-                    System.out.println(String.format("Queue is full, thread [%s]",Thread.currentThread().getName()));
-                }
+        while (true) {
+            produce();
+        }
+    }
+
+    public void produce() {
+        synchronized (queue) {
+            if (queue.full()) {
+                waitToProduce(queue);
+            } else {
+                System.out.println(Thread.currentThread() + " is creating product");
+                queue.push("Product");
+                notifyToConsume(queue);
             }
         }
-
+        sleepToProduce(timeToProduceWithSeconds);
     }
 
-    private void produceProduct(ProductQueue productQueue){
+    private void notifyToConsume(Object o) {
+        o.notifyAll();
+    }
+
+    public void sleepToProduce(int time) {
         try {
-            Product product = new Product(Integer.toString(produceNumber),Thread.currentThread().getName());
-            System.out.println(String.format("[%s] is producing product : [%s]",Thread.currentThread().getName(),product.toString()));
-            produceNumber++;
-            productQueue.push(product);
-            Thread.sleep(500);
+            Thread.sleep(TimeUnit.SECONDS.toMillis(time));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    private void wait(ProductQueue productQueue){
+    public void waitToProduce(Object o) {
         try {
-            productQueue.wait();
+            o.wait();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    public ProductQueue getProductQueue() {
-        return productQueue;
-    }
-
-    public void setProductQueue(ProductQueue productQueue) {
-        this.productQueue = productQueue;
+    public Producer(Queue queue) {
+        this.queue = queue;
     }
 }
