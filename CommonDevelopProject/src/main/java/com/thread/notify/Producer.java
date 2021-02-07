@@ -15,16 +15,13 @@ public class Producer extends Thread {
 
     public void produce() {
         synchronized (queue) {
-            if (queue.full()) {
-                waitToProduce(queue);
-            } else {
-                System.out.println(Thread.currentThread() + " is creating product");
-                queue.push("Product");
-                notifyToConsume(queue);
-            }
+            while (queue.full()) waitToProduce(queue);
+
+            System.out.println(Thread.currentThread() + " is creating product");
+            queue.push("Product");
+            notifyToConsume(queue);
         }
-        sleepToProduce(timeToProduceWithSeconds);
-    }
+        sleepToProduce(timeToProduceWithSeconds);    }
 
     private void notifyToConsume(Object o) {
         o.notifyAll();

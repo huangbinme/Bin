@@ -15,12 +15,10 @@ public class Consumer extends Thread {
 
     public void consume() {
         synchronized (queue) {
-            if (queue.blank()) {
-                waitToConsume(queue);
-            } else {
-                System.out.println(Thread.currentThread() + " is consuming " + queue.pop());
-                notifyToProduce(queue);
-            }
+            while (queue.blank())waitToConsume(queue);
+
+            System.out.println(Thread.currentThread() + " is consuming " + queue.pop());
+            notifyToProduce(queue);
         }
         sleepToConsume(timeToProduceWithSeconds);
     }
