@@ -2,7 +2,7 @@ package com.algorithm.find;
 
 import junit.framework.TestCase;
 
-public class BinarySearchTreeTest extends TestCase {
+public class BinaryDirectlySearchTreeTest extends TestCase {
 
     public void testPut() {
         BinarySearchTree binarySearchTree = new BinarySearchTree();
