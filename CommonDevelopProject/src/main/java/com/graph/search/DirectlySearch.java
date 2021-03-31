@@ -1,8 +1,9 @@
 package com.graph.search;
 
 import com.graph.api.GraphApi;
+import com.graph.search.api.Search;
 
-public class DirectlySearch implements Search{
+public class DirectlySearch implements Search {
 
     private final Integer baseVertex;
     private final GraphApi baseGraph;

@@ -1,11 +1,12 @@
 package com.graph.search;
 
 import com.graph.api.GraphApi;
+import com.graph.search.api.Search;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class DeeplySearch implements Search{
+public class DeeplySearch implements Search {
     private Boolean[] marked;
     private int count = 0;
 

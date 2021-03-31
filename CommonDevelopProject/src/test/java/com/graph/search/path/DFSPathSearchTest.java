@@ -1,4 +1,4 @@
-package com.graph.search;
+package com.graph.search.path;
 
 import com.algorithm.Constant;
 import com.graph.api.GraphApi;
@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DfsPathSearchTest {
+public class DFSPathSearchTest {
 
     GraphApi graph;
 
@@ -36,7 +36,7 @@ public class DfsPathSearchTest {
 
     @Test
     public void testHasPathTo() {
-        DfsPathSearch dfsPathSearch = new DfsPathSearch(graph,0);
+        DFSPathSearch dfsPathSearch = new DFSPathSearch(graph,0);
         Assert.assertEquals(dfsPathSearch.hasPathTo(0),true);
         Assert.assertEquals(dfsPathSearch.hasPathTo(3),true);
         Assert.assertEquals(dfsPathSearch.hasPathTo(2),true);
@@ -48,7 +48,7 @@ public class DfsPathSearchTest {
 
     @Test
     public void testPathTo() {
-        DfsPathSearch dfsPathSearch = new DfsPathSearch(graph,0);
+        DFSPathSearch dfsPathSearch = new DFSPathSearch(graph,0);
         System.out.println(dfsPathSearch.pathTo(0));
         System.out.println(dfsPathSearch.pathTo(1));
         System.out.println(dfsPathSearch.pathTo(3));
