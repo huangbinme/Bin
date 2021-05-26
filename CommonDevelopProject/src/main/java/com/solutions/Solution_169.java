@@ -10,7 +10,7 @@ public class Solution_169 {
             } else {
                 count--;
                 if (count == 0 && i != nums.length - 1) {
-                    m = nums[i+1];
+                    m = nums[i + 1];
                     i++;
                     count = 1;
                 }

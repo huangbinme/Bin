@@ -3,7 +3,7 @@ package com.solutions;
 public class Solution_38 {
     public String countAndSay(int n) {
         String dp = "1";
-        for (int i = 0; i < n-1; i++){
+        for (int i = 0; i < n - 1; i++) {
             dp = set(dp);
         }
         return dp;
@@ -20,7 +20,7 @@ public class Solution_38 {
                 comparingCharCount++;
             }
             stringBuilder.append(comparingCharCount).append(comparingChar);
-            if(index < s.length()){
+            if (index < s.length()) {
                 comparingChar = s.charAt(index);
                 comparingCharCount = 0;
             }

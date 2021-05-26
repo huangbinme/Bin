@@ -1,55 +1,30 @@
 package com.solutions;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+public class Solution {
+    public boolean checkZeroOnes(String s) {
+        return getLength(s, '1') > getLength(s, '0');
+    }
 
-class Solution {
-    public List<List<Integer>> subsets(int[] nums){
-        List<Integer> newNums = new ArrayList();
-        for (int i = 0; i < nums.length; i++) {
-            newNums.add(nums[i]);
+    private int getLength(String s, char c) {
+        int l = 0, r = 0, ans = 0;
+        while (r < s.length()) {
+            while (s.charAt(r) != c) {
+                r++;
+                l = r;
+                if (r == s.length()) return ans;
+            }
+            ans = Math.max(ans, r - l + 1);
+            r++;
         }
-        return subsets(newNums);
+        return ans;
     }
 
-    public List<List<Integer>> subsets(List<Integer> nums) {
-
-        if(nums.isEmpty()){
-            List<List<Integer>> result= new ArrayList<>();
-            result.add(Collections.emptyList());
-            return result;
+    public int maxSubArray(int[] nums) {
+        int ans = nums[0], preSum = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            preSum = Math.max(preSum + nums[i], nums[i]);
+            ans = Math.max(ans, preSum);
         }
-
-        Integer first = nums.get(0);
-        List<Integer> subList = nums.subList(1,nums.size());
-        List<List<Integer>> sb1 = subsets(subList);
-        List<List<Integer>> sb2 = addAll(first,sb1);
-        return concactList(sb1,sb2);
+        return ans;
     }
-
-    private List<List<Integer>> addAll(Integer first, List<List<Integer>> subList) {
-        List<List<Integer>> result = new ArrayList<>();
-        for (List<Integer> list:subList){
-            List<Integer> s = new ArrayList<>();
-            s.addAll(list);
-            s.add(first);
-            result.add(s);
-        }
-        return result;
-    }
-
-    private List<List<Integer>> concactList(List<List<Integer>> sb1,List<List<Integer>> sb2){
-        List<List<Integer>> result= new ArrayList<>();
-        result.addAll(sb1);
-        result.addAll(sb2);
-        return result;
-    }
-
-    public static void main(String[] args) {
-        Solution s = new Solution();
-        int[] a = new int[]{1,2,3};
-        System.out.println(s.subsets(a));
-    }
-
 }

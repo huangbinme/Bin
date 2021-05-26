@@ -2,27 +2,20 @@ package com.solutions;
 
 public class Solution_300 {
     public int lengthOfLIS(int[] nums) {
-        int a = nums.length;
-        int[] dp = new int[a];
+        int[] dp = new int[nums.length];
         dp[0] = 1;
-        int result = 1;
-        for (int i = 0; i < nums.length; i++) {
-            if (i==0) continue;
-
-            int max = -1;
+        int max = 1;
+        for (int i = 1; i < nums.length; i++) {
+            int nodeMax = 1;
             for (int j = 0; j < i; j++) {
-                if(nums[j]<nums[i]){
-                    max = Math.max(max,dp[j]);
+                if (nums[i] > nums[j]) {
+                    nodeMax = Math.max(nodeMax, dp[j] + 1);
                 }
             }
-            if(max==-1){
-                dp[i] = 1;
-            }else {
-                dp[i] = max+1;
-                result = Math.max(result,dp[i]);
-            }
+            dp[i] = nodeMax;
+            max = Math.max(max, nodeMax);
         }
-        return result;
+        return max;
     }
 
 

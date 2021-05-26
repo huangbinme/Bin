@@ -1,6 +1,7 @@
 package com.solutions;
 
 import junit.framework.TestCase;
+import org.testng.annotations.Test;
 
 public class Solution_54Test extends TestCase {
 
@@ -36,5 +37,9 @@ public class Solution_54Test extends TestCase {
         input[3] = new int[]{13,14,15,16};
         Solution_54 solution_54 = new Solution_54();
         solution_54.spiralOrder(input);
+    }
+
+    @Test
+    public void testTestSpiralOrder() {
     }
 }

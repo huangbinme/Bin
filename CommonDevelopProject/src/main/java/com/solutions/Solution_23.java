@@ -8,11 +8,11 @@ public class Solution_23 {
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists == null) return null;
         lists = filterNull(lists);
-        if (lists.length==0) return null;
-        if (lists.length==1) return lists[0];
+        if (lists.length == 0) return null;
+        if (lists.length == 1) return lists[0];
         ListNode head = lists[0];
         for (int i = 1; i < lists.length; i++) {
-            head = mergeTwoList(head,lists[i]);
+            head = mergeTwoList(head, lists[i]);
         }
         return head;
     }

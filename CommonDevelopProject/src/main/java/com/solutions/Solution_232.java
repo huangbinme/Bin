@@ -11,13 +11,17 @@ public class Solution_232 {
         stackForPop = new Stack<>();
     }
 
-    /** Push element x to the back of queue. */
+    /**
+     * Push element x to the back of queue.
+     */
     public void push(int x) {
         popToPush();
         stackForPush.push(x);
     }
 
-    /** Removes the element from in front of queue and returns that element. */
+    /**
+     * Removes the element from in front of queue and returns that element.
+     */
     public int pop() {
         pushToPop();
         int i = stackForPop.pop();
@@ -25,7 +29,9 @@ public class Solution_232 {
         return i;
     }
 
-    /** Get the front element. */
+    /**
+     * Get the front element.
+     */
     public int peek() {
         pushToPop();
         int i = stackForPop.peek();
@@ -33,19 +39,21 @@ public class Solution_232 {
         return i;
     }
 
-    /** Returns whether the queue is empty. */
+    /**
+     * Returns whether the queue is empty.
+     */
     public boolean empty() {
         return stackForPush.empty();
     }
 
-    private void popToPush(){
+    private void popToPush() {
         int size = stackForPop.size();
         for (int i = 0; i < size; i++) {
             stackForPush.push(stackForPop.pop());
         }
     }
 
-    private void pushToPop(){
+    private void pushToPop() {
         int size = stackForPush.size();
         for (int i = 0; i < size; i++) {
             stackForPop.push(stackForPush.pop());

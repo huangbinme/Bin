@@ -2,12 +2,11 @@ package com.solutions;
 
 public class Solution_53 {
     public int maxSubArray(int[] nums) {
-        int maxWithCurrentNum = nums[0];
-        int maxWithoutCurrentNum = nums[0];
+        int[] dp = new int[nums.length];
+        dp[0] = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            maxWithCurrentNum = Math.max(nums[i], nums[i] + maxWithCurrentNum);
-            maxWithoutCurrentNum = Math.max(maxWithCurrentNum, maxWithoutCurrentNum);
+            dp[i] = Math.max(dp[i - 1] + nums[i], nums[i]);
         }
-        return Math.max(maxWithCurrentNum, maxWithoutCurrentNum);
+        return dp[dp.length - 1];
     }
 }

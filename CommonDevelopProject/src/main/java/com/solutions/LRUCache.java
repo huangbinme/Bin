@@ -4,15 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LRUCache {
-    private int maxCapacity;
+    private final int maxCapacity;
     private int curCapacity;
-    private Map<Integer,Node> map = new HashMap();
-    private Node head;
-    private Node tail;
+    private final Map<Integer, Node> map = new HashMap();
+    private final Node head;
+    private final Node tail;
 
     public LRUCache(int capacity) {
-        head = new Node(null,null);
-        tail = new Node(null,null);
+        head = new Node(null, null);
+        tail = new Node(null, null);
         head.next = tail;
         tail.pre = head;
         this.maxCapacity = capacity;
@@ -20,7 +20,7 @@ public class LRUCache {
     }
 
     public int get(int key) {
-        if(!map.containsKey(key)) return -1;
+        if (!map.containsKey(key)) return -1;
         Node cur = map.get(key);
         int returnValue = cur.value;
         moveToHead(cur);
@@ -28,15 +28,15 @@ public class LRUCache {
     }
 
     public void put(int key, int value) {
-        if (map.containsKey(key)){
+        if (map.containsKey(key)) {
             Node cur = map.get(key);
             cur.value = value;
             moveToHead(cur);
             return;
         }
         //add new node to first after head, and map
-        Node newNode = new Node(key,value);
-        map.put(key,newNode);
+        Node newNode = new Node(key, value);
+        map.put(key, newNode);
         Node firstAfterHead = this.head.next;
         this.head.next = newNode;
         newNode.pre = this.head;
@@ -44,7 +44,7 @@ public class LRUCache {
         firstAfterHead.pre = newNode;
         this.curCapacity++;
         //to check capacity
-        if(this.curCapacity > maxCapacity){
+        if (this.curCapacity > maxCapacity) {
             Node removeNode = this.tail.pre;
             Node pre = removeNode.pre;
             pre.next = this.tail;
@@ -54,7 +54,7 @@ public class LRUCache {
         }
     }
 
-    public void moveToHead(Node cur){
+    public void moveToHead(Node cur) {
         Node pre = cur.pre;
         Node next = cur.next;
         pre.next = next;
@@ -66,13 +66,13 @@ public class LRUCache {
         firstAfterHead.pre = cur;
     }
 
-    public class Node{
+    public class Node {
         public Integer key;
         public Integer value;
         public Node pre;
         public Node next;
 
-        public Node(Integer key,Integer value) {
+        public Node(Integer key, Integer value) {
             this.value = value;
             this.key = key;
         }

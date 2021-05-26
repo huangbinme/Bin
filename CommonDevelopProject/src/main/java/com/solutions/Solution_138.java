@@ -8,7 +8,7 @@ public class Solution_138 {
     List<Node> newNodes = new ArrayList<>();
 
     public Node copyRandomList(Node head) {
-        if(head==null) return null;
+        if (head == null) return null;
         setUpSets(head);
         setUpRandom();
         return linkThenReturn();
@@ -16,8 +16,8 @@ public class Solution_138 {
 
     private Node linkThenReturn() {
         Node head = newNodes.get(0);
-        for (int i = 0; i < newNodes.size()-1; i++) {
-            newNodes.get(i).next = newNodes.get(i+1);
+        for (int i = 0; i < newNodes.size() - 1; i++) {
+            newNodes.get(i).next = newNodes.get(i + 1);
         }
         return head;
     }
@@ -25,7 +25,7 @@ public class Solution_138 {
     private void setUpRandom() {
         for (int i = 0; i < oldNodes.size(); i++) {
             Node random = oldNodes.get(i).random;
-            if(random!=null){
+            if (random != null) {
                 int randomIndex = oldNodes.indexOf(random);
                 Node node = newNodes.get(i);
                 node.random = newNodes.get(randomIndex);
@@ -35,7 +35,7 @@ public class Solution_138 {
 
     private void setUpSets(Node head) {
         Node tmp = head;
-        while (tmp!=null){
+        while (tmp != null) {
             oldNodes.add(tmp);
             newNodes.add(new Node(tmp.val));
             tmp = tmp.next;

@@ -12,4 +12,8 @@ public class Solution_53Test {
         int[] ints = new int[]{-2,1,-3,4,-1,2,1,-5,4};
         solution_53.maxSubArray(ints);
     }
+
+    @Test
+    public void testTestMaxSubArray() {
+    }
 }

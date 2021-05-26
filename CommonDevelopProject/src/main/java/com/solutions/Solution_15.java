@@ -1,6 +1,9 @@
 package com.solutions;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Solution_15 {
 
@@ -24,13 +27,13 @@ public class Solution_15 {
                 if (add == targetNum) {
                     result.add(Arrays.asList(nums[i], nums[left], nums[right]));
                     int tmp = nums[left];
-                    while (left<nums.length&&nums[left] == tmp) left++;
+                    while (left < nums.length && nums[left] == tmp) left++;
                 } else if (add - targetNum > 0) {
                     int tmp = nums[right];
                     while (nums[right] == tmp) right--;
                 } else {
                     int tmp = nums[left];
-                    while (left<nums.length&&nums[left] == tmp) left++;
+                    while (left < nums.length && nums[left] == tmp) left++;
                 }
             }
         }
