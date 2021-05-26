@@ -7,30 +7,30 @@ public class Demo {
 
     public static void main(String[] args) {
         Thread thread = new Thread(() -> {
-            System.out.println(Thread.currentThread().getName()+" is start");
+            System.out.println(Thread.currentThread().getName() + " is start");
 
             try {
                 reentrantReadWriteLock.writeLock().lock();
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }finally {
+            } finally {
                 reentrantReadWriteLock.writeLock().unlock();
             }
-            System.out.println(Thread.currentThread().getName()+" is end");
+            System.out.println(Thread.currentThread().getName() + " is end");
         });
 
         Thread thread1 = new Thread(() -> {
-            System.out.println(Thread.currentThread().getName()+" is start");
+            System.out.println(Thread.currentThread().getName() + " is start");
             try {
                 reentrantReadWriteLock.writeLock().lock();
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }finally {
+            } finally {
                 reentrantReadWriteLock.writeLock().unlock();
             }
-            System.out.println(Thread.currentThread().getName()+" is end");
+            System.out.println(Thread.currentThread().getName() + " is end");
         });
 
         thread.start();

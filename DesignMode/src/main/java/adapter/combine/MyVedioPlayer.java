@@ -1,8 +1,8 @@
 package adapter.combine;
 
-public class MyVedioPlayer implements VedioPlayer{
+public class MyVedioPlayer implements VedioPlayer {
     @Override
     public void playVedio(String file) {
-        System.out.println("MyVedioPlayer -> file "+file+" has been playing");
+        System.out.println("MyVedioPlayer -> file " + file + " has been playing");
     }
 }

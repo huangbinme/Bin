@@ -1,12 +1,16 @@
 package thread.notify.print;
 
-public class NumberPrinter extends Thread{
+public class NumberPrinter extends Thread {
     Object object;
+
+    public NumberPrinter(Object object) {
+        this.object = object;
+    }
 
     @Override
     public void run() {
-        while (true){
-            synchronized (object){
+        while (true) {
+            synchronized (object) {
                 System.out.println("1");
                 object.notify();
                 try {
@@ -22,9 +26,5 @@ public class NumberPrinter extends Thread{
             }
         }
 
-    }
-
-    public NumberPrinter(Object object) {
-        this.object = object;
     }
 }

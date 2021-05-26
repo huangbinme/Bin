@@ -10,6 +10,12 @@ public class Producer extends Thread {
     private Queue queue;
     private Condition condition;
 
+    public Producer(Lock lock, Queue queue) {
+        this.lock = lock;
+        this.queue = queue;
+        this.condition = lock.newCondition();
+    }
+
     @Override
     public void run() {
         while (true) {
@@ -36,12 +42,6 @@ public class Producer extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public Producer(Lock lock, Queue queue) {
-        this.lock = lock;
-        this.queue = queue;
-        this.condition = lock.newCondition();
     }
 
     public Lock getLock() {

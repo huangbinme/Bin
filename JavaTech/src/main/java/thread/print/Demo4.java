@@ -12,19 +12,19 @@ public class Demo4 {
     public static Thread t3;
 
     public static void main(String[] args) throws InterruptedException {
-        t1 = new Thread(() ->{
+        t1 = new Thread(() -> {
             boolean init = false;
-            while (true){
+            while (true) {
                 int num = atomicInteger.get();
-                if(num%3==0&&num<=100){
+                if (num % 3 == 0 && num <= 100) {
                     atomicInteger.addAndGet(1);
-                    System.out.println(Thread.currentThread().getName() + " : ["+num+"]");
+                    System.out.println(Thread.currentThread().getName() + " : [" + num + "]");
                 }
-                if(num>100){
+                if (num > 100) {
                     break;
-                }else {
+                } else {
                     LockSupport.unpark(t2);
-                    if(!init){
+                    if (!init) {
                         countDownLatch.countDown();
                         init = true;
                     }
@@ -33,19 +33,19 @@ public class Demo4 {
             }
         });
 
-        t2 = new Thread(() ->{
-            while (true){
+        t2 = new Thread(() -> {
+            while (true) {
                 boolean init = false;
                 int num = atomicInteger.get();
-                if(num%5==0&&num<=100){
+                if (num % 5 == 0 && num <= 100) {
                     atomicInteger.addAndGet(1);
-                    System.out.println(Thread.currentThread().getName() + " : ["+num+"]");
+                    System.out.println(Thread.currentThread().getName() + " : [" + num + "]");
                 }
-                if(num>100){
+                if (num > 100) {
                     break;
-                }else {
+                } else {
                     LockSupport.unpark(t3);
-                    if(!init){
+                    if (!init) {
                         countDownLatch.countDown();
                         init = true;
                     }
@@ -54,10 +54,10 @@ public class Demo4 {
             }
         });
 
-        t3 = new Thread(() ->{
-            while (true){
+        t3 = new Thread(() -> {
+            while (true) {
                 boolean init = false;
-                if(!init){
+                if (!init) {
                     try {
                         countDownLatch.await();
                     } catch (InterruptedException e) {
@@ -65,15 +65,15 @@ public class Demo4 {
                     }
                 }
                 int num = atomicInteger.get();
-                if(num%5!=0&&num%3!=0&&num<=100){
+                if (num % 5 != 0 && num % 3 != 0 && num <= 100) {
                     atomicInteger.addAndGet(1);
-                    System.out.println(Thread.currentThread().getName() + " : ["+num+"]");
+                    System.out.println(Thread.currentThread().getName() + " : [" + num + "]");
                 }
-                if(num>100){
+                if (num > 100) {
                     LockSupport.unpark(t1);
                     LockSupport.unpark(t2);
                     break;
-                }else {
+                } else {
                     LockSupport.unpark(t1);
                     LockSupport.park();
                 }

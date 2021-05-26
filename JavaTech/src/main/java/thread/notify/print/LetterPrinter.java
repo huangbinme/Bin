@@ -1,12 +1,16 @@
 package thread.notify.print;
 
-public class LetterPrinter extends Thread{
+public class LetterPrinter extends Thread {
     Object object;
+
+    public LetterPrinter(Object object) {
+        this.object = object;
+    }
 
     @Override
     public void run() {
-        while (true){
-            synchronized (object){
+        while (true) {
+            synchronized (object) {
                 System.out.println("A");
                 object.notify();
                 try {
@@ -22,9 +26,5 @@ public class LetterPrinter extends Thread{
             }
         }
 
-    }
-
-    public LetterPrinter(Object object) {
-        this.object = object;
     }
 }

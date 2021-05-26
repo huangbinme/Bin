@@ -19,6 +19,6 @@ public class Solution_160Test {
         ListNode listNode6 = new ListNode(3);
         listNode6.next = listNode4;
         Solution_160 solution_160 = new Solution_160();
-        solution_160.getIntersectionNode(listNode1,listNode6);
+        solution_160.getIntersectionNode(listNode1, listNode6);
     }
 }

@@ -2,7 +2,7 @@ package com.leetcode;
 
 import org.junit.Test;
 
-public class Solution_49Test{
+public class Solution_49Test {
 
     @Test
     public void groupAnagrams() {

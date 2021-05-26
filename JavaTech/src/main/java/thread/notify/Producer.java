@@ -6,6 +6,10 @@ public class Producer extends Thread {
     private Queue queue;
     private int timeToProduceWithSeconds = 1;
 
+    public Producer(Queue queue) {
+        this.queue = queue;
+    }
+
     @Override
     public void run() {
         while (true) {
@@ -21,7 +25,8 @@ public class Producer extends Thread {
             queue.push("Product");
             notifyToConsume(queue);
         }
-        sleepToProduce(timeToProduceWithSeconds);    }
+        sleepToProduce(timeToProduceWithSeconds);
+    }
 
     private void notifyToConsume(Object o) {
         o.notifyAll();
@@ -41,9 +46,5 @@ public class Producer extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public Producer(Queue queue) {
-        this.queue = queue;
     }
 }

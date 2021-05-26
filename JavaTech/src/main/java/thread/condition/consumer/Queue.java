@@ -8,19 +8,19 @@ public class Queue {
         this.products = new String[size];
     }
 
-    public boolean full(){
+    public boolean full() {
         return productNum == products.length;
     }
 
-    public boolean blank(){
-        return productNum== 0;
+    public boolean blank() {
+        return productNum == 0;
     }
 
-    public void push(String productName){
+    public void push(String productName) {
         products[productNum++] = productName;
     }
 
-    public String pop(){
+    public String pop() {
         return products[--productNum];
     }
 }

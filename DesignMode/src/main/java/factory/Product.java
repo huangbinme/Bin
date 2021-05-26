@@ -3,6 +3,7 @@ package factory;
 public abstract class Product {
     protected String name;
     protected Boolean register = Boolean.FALSE;
+
     public abstract void use();
 
     public String getName() {

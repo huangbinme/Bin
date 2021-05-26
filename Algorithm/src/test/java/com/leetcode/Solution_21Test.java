@@ -18,11 +18,11 @@ public class Solution_21Test extends TestCase {
         l5.next = l6;
 
         Solution_21 solution_21 = new Solution_21();
-        ListNode re = solution_21.mergeTwoLists(l1,l4);
+        ListNode re = solution_21.mergeTwoLists(l1, l4);
         System.out.println("su");
     }
 
-    public ListNode get(int num){
+    public ListNode get(int num) {
         return new ListNode(num);
     }
 }

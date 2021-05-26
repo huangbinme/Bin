@@ -4,11 +4,17 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
-public class Consumer extends Thread{
+public class Consumer extends Thread {
     private Lock lock;
     private int timeToProcessWithSeconds = 1;
     private Queue queue;
     private Condition condition;
+
+    public Consumer(Lock lock, Queue queue) {
+        this.lock = lock;
+        this.queue = queue;
+        this.condition = lock.newCondition();
+    }
 
     @Override
     public void run() {
@@ -18,7 +24,7 @@ public class Consumer extends Thread{
                 while (queue.blank()) {
                     condition.await();
                 }
-                System.out.println(Thread.currentThread() + " is consuming "+queue.pop());
+                System.out.println(Thread.currentThread() + " is consuming " + queue.pop());
                 condition.signalAll();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -35,12 +41,6 @@ public class Consumer extends Thread{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public Consumer(Lock lock, Queue queue) {
-        this.lock = lock;
-        this.queue = queue;
-        this.condition = lock.newCondition();
     }
 
     public Lock getLock() {

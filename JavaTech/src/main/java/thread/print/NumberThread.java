@@ -2,27 +2,27 @@ package thread.print;
 
 import java.util.concurrent.locks.Lock;
 
-public class NumberThread implements Runnable{
+public class NumberThread implements Runnable {
     private Lock lock;
     private Printer printer;
 
     @Override
     public void run() {
-        while (true){
-            if(printer.getNumber()>26){
+        while (true) {
+            if (printer.getNumber() > 26) {
                 printer.setOutputFlag(false);
                 break;
             }
 
-            if(printer.isOutputFlag()){
+            if (printer.isOutputFlag()) {
                 lock.lock();
                 try {
                     printer.numberPrint();
-                }finally {
+                } finally {
                     printer.setOutputFlag(false);
                     lock.unlock();
                 }
-            }else {
+            } else {
 
             }
         }

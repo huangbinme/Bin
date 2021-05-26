@@ -6,6 +6,10 @@ public class Consumer extends Thread {
     private Queue queue;
     private int timeToProduceWithSeconds = 2;
 
+    public Consumer(Queue queue) {
+        this.queue = queue;
+    }
+
     @Override
     public void run() {
         while (true) {
@@ -15,14 +19,13 @@ public class Consumer extends Thread {
 
     public void consume() {
         synchronized (queue) {
-            while (queue.blank())waitToConsume(queue);
+            while (queue.blank()) waitToConsume(queue);
 
             System.out.println(Thread.currentThread() + " is consuming " + queue.pop());
             notifyToProduce(queue);
         }
         sleepToConsume(timeToProduceWithSeconds);
     }
-
 
     public void sleepToConsume(int time) {
         try {
@@ -44,10 +47,5 @@ public class Consumer extends Thread {
         synchronized (o) {
             o.notifyAll();
         }
-    }
-
-
-    public Consumer(Queue queue) {
-        this.queue = queue;
     }
 }

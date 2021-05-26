@@ -16,6 +16,6 @@ public class Solution_92Test {
         listNode3.next = listNode4;
         listNode4.next = listNode5;
         Solution_92 solution_92 = new Solution_92();
-        solution_92.reverseBetween(listNode1,2,4);
+        solution_92.reverseBetween(listNode1, 2, 4);
     }
 }

@@ -5,10 +5,10 @@ import java.util.Map;
 
 public class LRUCache {
     private final int maxCapacity;
-    private int curCapacity;
     private final Map<Integer, Node> map = new HashMap();
     private final Node head;
     private final Node tail;
+    private int curCapacity;
 
     public LRUCache(int capacity) {
         head = new Node(null, null);

@@ -1,6 +1,6 @@
 package adapter.designate;
 
-public class MyVideoPlayerAdapter implements PlayerAdapter{
+public class MyVideoPlayerAdapter implements PlayerAdapter {
     private VideoPlayer videoPlayer;
 
     public MyVideoPlayerAdapter(VideoPlayer videoPlayer) {

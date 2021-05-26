@@ -13,6 +13,14 @@ public class Graph implements GraphApi {
     private int edgeCount = 0;
     private List<Integer>[] adjacentTable;
 
+    public Graph(int vertexCount) {
+        this.vertexCount = vertexCount;
+        adjacentTable = new List[vertexCount];
+        for (int i = 0; i < vertexCount; i++) {
+            adjacentTable[i] = new LinkedList<>();
+        }
+    }
+
     @Override
     public int vertexCount() {
         return this.vertexCount;
@@ -44,13 +52,5 @@ public class Graph implements GraphApi {
             if (i != adjacentTable.length - 1) stringBuilder.append(System.lineSeparator());
         }
         return stringBuilder.toString();
-    }
-
-    public Graph(int vertexCount) {
-        this.vertexCount = vertexCount;
-        adjacentTable = new List[vertexCount];
-        for (int i = 0; i < vertexCount; i++) {
-            adjacentTable[i] = new LinkedList<>();
-        }
     }
 }

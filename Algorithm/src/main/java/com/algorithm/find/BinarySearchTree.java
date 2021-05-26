@@ -2,42 +2,42 @@ package com.algorithm.find;
 
 import com.algorithm.find.api.ST;
 
-public class BinarySearchTree<Key extends Comparable, Value> implements ST<Key,Value> {
+public class BinarySearchTree<Key extends Comparable, Value> implements ST<Key, Value> {
     private Node root;
     private int size = 0;
 
     @Override
     public Value get(Key k) {
-        return get(root,k);
+        return get(root, k);
     }
 
     private Value get(Node current, Key k) {
-        if (current==null) return null;
+        if (current == null) return null;
         int cmp = current.getKey().compareTo(k);
-        if(cmp==0) return current.getValue();
-        if(cmp>0){
-            return get(current.getLeft(),k);
+        if (cmp == 0) return current.getValue();
+        if (cmp > 0) {
+            return get(current.getLeft(), k);
         } else {
-            return get(current.getRight(),k);
+            return get(current.getRight(), k);
         }
     }
 
     @Override
     public void put(Key k, Value v) {
-        root = put(root,k,v);
+        root = put(root, k, v);
     }
 
     private Node put(Node node, Key k, Value v) {
-        if(node==null){
+        if (node == null) {
             this.size++;
-            return new Node(k,v);
+            return new Node(k, v);
         }
         int cmp = node.getKey().compareTo(k);
-        if(cmp>0){
-            node.left = put(node.left,k,v);
-        }else if (cmp<0){
-            node.right = put(node.right,k,v);
-        }else {
+        if (cmp > 0) {
+            node.left = put(node.left, k, v);
+        } else if (cmp < 0) {
+            node.right = put(node.right, k, v);
+        } else {
             node.setValue(v);
         }
         return node;
@@ -45,20 +45,20 @@ public class BinarySearchTree<Key extends Comparable, Value> implements ST<Key,V
 
     @Override
     public void delete(Key k) {
-        root = delete(root,k);
+        root = delete(root, k);
         this.size--;
     }
 
     private Node delete(Node node, Key k) {
-        if(node==null)return null;
+        if (node == null) return null;
         int cmp = node.getKey().compareTo(k);
-        if(cmp>0){
-            node.left = delete(node.left,k);
-        }else if (cmp<0){
-            node.right = delete(node.right,k);
-        }else {
-            if(node.left==null)return node.right;
-            if(node.right==null)return node.left;
+        if (cmp > 0) {
+            node.left = delete(node.left, k);
+        } else if (cmp < 0) {
+            node.right = delete(node.right, k);
+        } else {
+            if (node.left == null) return node.right;
+            if (node.right == null) return node.left;
             Node tmp = node;
             Node rightMin = min(node.getRight());
             deleteMin(node.getRight());
@@ -71,12 +71,12 @@ public class BinarySearchTree<Key extends Comparable, Value> implements ST<Key,V
 
     @Override
     public boolean contains(Key k) {
-        return get(k)!=null;
+        return get(k) != null;
     }
 
     @Override
     public boolean isEmpty() {
-        return size()==0;
+        return size() == 0;
     }
 
     @Override
@@ -90,7 +90,7 @@ public class BinarySearchTree<Key extends Comparable, Value> implements ST<Key,V
     }
 
     public Node min(Node node) {
-        if(node.getLeft()==null) return node;
+        if (node.getLeft() == null) return node;
         return min(node.getLeft());
     }
 
@@ -100,7 +100,7 @@ public class BinarySearchTree<Key extends Comparable, Value> implements ST<Key,V
     }
 
     public Node max(Node node) {
-        if(node.getRight()==null) return node;
+        if (node.getRight() == null) return node;
         return max(node.getRight());
     }
 
@@ -111,7 +111,7 @@ public class BinarySearchTree<Key extends Comparable, Value> implements ST<Key,V
     }
 
     private Node deleteMin(Node node) {
-        if(node.getLeft()==null){
+        if (node.getLeft() == null) {
             return node.getRight();
         }
         node.left = deleteMin(node.getLeft());
@@ -125,7 +125,7 @@ public class BinarySearchTree<Key extends Comparable, Value> implements ST<Key,V
     }
 
     private Node deleteMax(Node node) {
-        if(node.getRight()==null){
+        if (node.getRight() == null) {
             return node.getLeft();
         }
         node.right = deleteMax(node.getRight());
@@ -137,25 +137,30 @@ public class BinarySearchTree<Key extends Comparable, Value> implements ST<Key,V
         return null;
     }
 
-    public void print(){
+    public void print() {
         StringBuilder sb = new StringBuilder();
-        print(sb,this.root);
+        print(sb, this.root);
         System.out.println(sb.toString());
     }
 
     private void print(StringBuilder sb, Node root) {
-        if(root==null) return;
-        sb.append(String.format("[%s]",root.getKey()));
-        print(sb,root.getLeft());
-        print(sb,root.getRight());
+        if (root == null) return;
+        sb.append(String.format("[%s]", root.getKey()));
+        print(sb, root.getLeft());
+        print(sb, root.getRight());
     }
 
-    public class Node{
+    public class Node {
         private int index;
         private Key key;
         private Value value;
         private Node left;
         private Node right;
+
+        public Node(Key key, Value value) {
+            this.key = key;
+            this.value = value;
+        }
 
         public int getIndex() {
             return index;
@@ -195,11 +200,6 @@ public class BinarySearchTree<Key extends Comparable, Value> implements ST<Key,V
 
         public void setRight(Node right) {
             this.right = right;
-        }
-
-        public Node(Key key, Value value) {
-            this.key = key;
-            this.value = value;
         }
     }
 }

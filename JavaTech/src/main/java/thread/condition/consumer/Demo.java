@@ -8,13 +8,13 @@ public class Demo {
         Queue queue = new Queue(10);
 
         Lock lock = new ReentrantLock();
-        Producer p1 = new Producer(lock,queue);
-        Producer p2 = new Producer(lock,queue);
-        Producer p3 = new Producer(lock,queue);
+        Producer p1 = new Producer(lock, queue);
+        Producer p2 = new Producer(lock, queue);
+        Producer p3 = new Producer(lock, queue);
 
-        Consumer c1 = new Consumer(lock,queue);
-        Consumer c2 = new Consumer(lock,queue);
-        Consumer c3 = new Consumer(lock,queue);
+        Consumer c1 = new Consumer(lock, queue);
+        Consumer c2 = new Consumer(lock, queue);
+        Consumer c3 = new Consumer(lock, queue);
 
         p1.start();
         p2.start();

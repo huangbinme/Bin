@@ -37,6 +37,6 @@ public class Solution_5178Test {
         queries[2][0] = 1;
         queries[2][1] = 1;
         queries[2][2] = 2;
-        solution_5178.countPoints(points,queries);
+        solution_5178.countPoints(points, queries);
     }
 }

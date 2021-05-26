@@ -2,28 +2,28 @@ package thread.print;
 
 import java.util.concurrent.locks.Lock;
 
-public class LetterThread implements Runnable{
+public class LetterThread implements Runnable {
     private Lock lock;
     private Printer printer;
 
     @Override
     public void run() {
-        while (true){
-            if(printer.getLetter()>25){
+        while (true) {
+            if (printer.getLetter() > 25) {
                 printer.setOutputFlag(true);
                 break;
             }
 
-            if(!printer.isOutputFlag()){
+            if (!printer.isOutputFlag()) {
                 lock.lock();
                 try {
                     printer.letterPrint();
 
-                }finally {
+                } finally {
                     printer.setOutputFlag(true);
                     lock.unlock();
                 }
-            }else {
+            } else {
 
             }
         }

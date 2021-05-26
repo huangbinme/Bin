@@ -7,6 +7,6 @@ public class ZigzagConversionTest {
     @Test
     public void convert() {
         ZigzagConversion ojb = new ZigzagConversion();
-        System.out.print(ojb.convert("AB",1));
+        System.out.print(ojb.convert("AB", 1));
     }
 }

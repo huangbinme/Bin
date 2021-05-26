@@ -1,6 +1,6 @@
 package factory;
 
-public class IcCardFactory extends Factory{
+public class IcCardFactory extends Factory {
     @Override
     public Product createProduct(String name) {
         Product product = new IcCard();

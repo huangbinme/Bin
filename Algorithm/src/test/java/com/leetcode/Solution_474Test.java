@@ -13,6 +13,6 @@ public class Solution_474Test extends TestCase {
         strings[0] = "10";
         strings[1] = "0";
         strings[2] = "1";
-        System.out.println(solution_474.findMaxForm(strings,1,1));
+        System.out.println(solution_474.findMaxForm(strings, 1, 1));
     }
 }
