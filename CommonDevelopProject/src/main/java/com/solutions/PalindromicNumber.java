@@ -1,8 +1,8 @@
 package com.solutions;
 
 public class PalindromicNumber {
-    public boolean isPalindrome(int x){
-        if(x<0){
+    public boolean isPalindrome(int x) {
+        if (x < 0) {
             return false;
         }
         StringBuilder sb = new StringBuilder(Integer.toString(x));
