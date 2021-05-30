@@ -1,30 +1,27 @@
 package com.leetcode;
 
 public class Solution {
-    public boolean checkZeroOnes(String s) {
-        return getLength(s, '1') > getLength(s, '0');
-    }
-
-    private int getLength(String s, char c) {
-        int l = 0, r = 0, ans = 0;
-        while (r < s.length()) {
-            while (s.charAt(r) != c) {
-                r++;
-                l = r;
-                if (r == s.length()) return ans;
+    public String maxValue(String n, int x) {
+        StringBuilder sb = new StringBuilder(n);
+        if (n.startsWith("-")) {
+            int target = sb.length();
+            for (int i = 1; i < sb.length(); i++) {
+                if (Character.digit(sb.charAt(i),10) > x) {
+                    target = i;
+                    break;
+                }
             }
-            ans = Math.max(ans, r - l + 1);
-            r++;
+            sb.insert(target, x);
+        } else {
+            int target = sb.length();
+            for (int i = 0; i < sb.length(); i++) {
+                if (Character.digit(sb.charAt(i),10) < x) {
+                    target = i;
+                    break;
+                }
+            }
+            sb.insert(target, x);
         }
-        return ans;
-    }
-
-    public int maxSubArray(int[] nums) {
-        int ans = nums[0], preSum = nums[0];
-        for (int i = 1; i < nums.length; i++) {
-            preSum = Math.max(preSum + nums[i], nums[i]);
-            ans = Math.max(ans, preSum);
-        }
-        return ans;
+        return sb.toString();
     }
 }
