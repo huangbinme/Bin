@@ -6,13 +6,14 @@ import java.util.LinkedList;
 public class Solution_456 {
     public boolean find132pattern(int[] nums) {
         Deque<Integer> deque = new LinkedList<>();
-        for (int i = 0; i < nums.length; i++) {
-            int largerCount = 0;
-            while (!deque.isEmpty() && deque.peekLast() >= nums[i]) {
-                if (deque.pollLast() > nums[i]) largerCount++;
+        Integer maxInPop = null;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (maxInPop != null && nums[i] < maxInPop) return true;
+            while (!deque.isEmpty() && deque.peekLast() < nums[i]) {
+                int num = deque.pollLast();
+                maxInPop = maxInPop == null ? num : Math.max(maxInPop, num);
             }
             deque.offerLast(nums[i]);
-            if (deque.size() > 1 && largerCount > 0) return true;
         }
         return false;
     }
