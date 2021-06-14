@@ -12,6 +12,10 @@ public class Solution_6Test {
         //PINALIGYAIHRNPSI
         //PINALSIGYAHRPI
         Solution_6 solution_6 = new Solution_6();
-        System.out.println(solution_6.convert("PAYPALISHIRING",4));
+        System.out.println(solution_6.convert("AB",1));
+    }
+
+    @Test
+    public void testTestConvert() {
     }
 }
