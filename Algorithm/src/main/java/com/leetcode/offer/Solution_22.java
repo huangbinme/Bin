@@ -1,6 +1,6 @@
 package com.leetcode.offer;
 
-public class Solution_Offer_22 {
+public class Solution_22 {
     public ListNode getKthFromEnd(ListNode head, int k) {
         ListNode slow = head;
         ListNode fast = head;

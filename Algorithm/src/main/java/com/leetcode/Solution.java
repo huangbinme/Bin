@@ -2,7 +2,9 @@ package com.leetcode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Solution {
     public String[] permutation(String s) {
@@ -30,5 +32,51 @@ public class Solution {
             sb.deleteCharAt(sb.length() - 1);
             visit[i] = false;
         }
+    }
+
+    public boolean hasCycle(ListNode head) {
+        if (head == null) return false;
+        ListNode slow = head, fast = head;
+        while (true) {
+            if (slow == null || fast == null || fast.next == null) return false;
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) break;
+        }
+        return true;
+    }
+
+    public ListNode detectCycle(ListNode head) {
+        if (head == null) return null;
+        ListNode slow = head, fast = head;
+        while (true) {
+            if (slow == null || fast == null || fast.next == null) return null;
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) break;
+        }
+        slow = head;
+        while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return slow;
+    }
+
+    public String minNumber(int[] nums) {
+        List<String> strings = Arrays.stream(nums)
+                .boxed()
+                .map(String::valueOf)
+                .collect(Collectors.toList());
+        Collections.sort(strings, (a, b) -> {
+            String strA = a + b;
+            String strB = b + a;
+            return strA.compareTo(strB);
+        });
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String string : strings) {
+            stringBuilder.append(string);
+        }
+        return stringBuilder.toString();
     }
 }

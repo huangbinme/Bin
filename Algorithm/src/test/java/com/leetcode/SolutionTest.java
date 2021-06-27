@@ -7,6 +7,5 @@ public class SolutionTest {
     @Test
     public void testJump() {
         Solution solution = new Solution();
-        solution.minimumSwap("xyxyy","xxyyy");
     }
 }

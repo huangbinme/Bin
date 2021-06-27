@@ -1,6 +1,6 @@
 package com.leetcode.offer;
 
-public class Solution_Offer_03 {
+public class Solution_03 {
     public int findRepeatNumber(int[] nums) {
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] == i) continue;

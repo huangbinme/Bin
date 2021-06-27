@@ -1,22 +1,21 @@
 package com.algorithm.sort;
 
 public class BubbleSort implements BaseSort {
-
     @Override
     public int[] sort(int[] input) {
-        boolean ifBreak = true;
-        int j = input.length - 1;
-        while (ifBreak) {
-            ifBreak = false;
-            for (int i = 0; i < j; i++) {
-                if (input[i] > input[i + 1]) {
-                    SortingUtil.exchange(input, i, i + 1);
-                    ifBreak = true;
+        for (int i = input.length - 2; i >= 0; i--) {
+            for (int j = 0; j <= i; j++) {
+                if (input[j] > input[j + 1]) {
+                    swap(input, j, j + 1);
                 }
             }
-            j--;
         }
         return input;
     }
 
+    private void swap(int[] nums, int i, int j) {
+        nums[i] = nums[i] + nums[j];
+        nums[j] = nums[i] - nums[j];
+        nums[i] = nums[i] - nums[j];
+    }
 }

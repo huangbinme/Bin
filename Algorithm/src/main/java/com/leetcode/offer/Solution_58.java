@@ -1,6 +1,6 @@
 package com.leetcode.offer;
 
-public class Solution_Offer_58 {
+public class Solution_58 {
     public String reverseWords(String s) {
         StringBuilder stringBuilder = new StringBuilder();
         String[] strings = s.split(" ");
