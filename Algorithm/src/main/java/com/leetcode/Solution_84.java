@@ -1,24 +1,30 @@
 package com.leetcode;
 
+import java.util.Deque;
 import java.util.LinkedList;
 
 public class Solution_84 {
+    int ans = 0;
+
     public int largestRectangleArea(int[] heights) {
-        int ans = 0;
-        LinkedList<int[]> deque = new LinkedList<>();
+        if (heights.length == 0) return ans;
+        Deque<int[]> deque = new LinkedList<>();
+        deque.offerLast(new int[]{0, 0});
         for (int i = 0; i < heights.length; i++) {
-            int h = heights[i];
-            ans = Math.max(ans, h);
-            for (int j = 0; j < deque.size(); j++) {
-                int l = j != 0 ? (i - deque.get(j)[1] + 1) : (i + 1);
-                int newArea = Math.min(deque.get(j)[0], h) * l;
-                ans = Math.max(ans, newArea);
-            }
-            while (!deque.isEmpty() && deque.peekLast()[0] > h) {
-                deque.pollLast();
-            }
-            deque.offerLast(new int[]{h, i});
+            inQueue(deque, heights[i], i + 1);
         }
+        inQueue(deque, 0, heights.length + 1);
         return ans;
+    }
+
+    private void inQueue(Deque<int[]> deque, int height, int index) {
+        while (!deque.isEmpty() && deque.peekLast()[0] >= height) {
+            int[] cur = deque.pollLast();
+            if(!deque.isEmpty()){
+                int l = index - cur[1] + cur[1] - deque.peekLast()[1] - 1;
+                ans = Math.max(ans, cur[0] * l);
+            }
+        }
+        deque.offerLast(new int[]{height, index});
     }
 }
