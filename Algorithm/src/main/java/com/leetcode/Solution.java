@@ -27,4 +27,22 @@ public class Solution {
         }
         return ans;
     }
+
+    public int majorityElement(int[] nums) {
+        int count = 0, ele = -1;
+        for (int i = 0; i < nums.length; i++) {
+            if (count == 0) {
+                count++;
+                ele = nums[i];
+            } else {
+                count = nums[i] == ele ? count + 1 : count - 1;
+                ele = count == 0 ? -1 : ele;
+            }
+        }
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == ele) sum++;
+        }
+        return sum > nums.length / 2 ? ele : -1;
+    }
 }
