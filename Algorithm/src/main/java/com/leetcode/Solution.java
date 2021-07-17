@@ -1,5 +1,8 @@
 package com.leetcode;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 public class Solution {
     int ans = 0;
 
@@ -44,5 +47,22 @@ public class Solution {
             if (nums[i] == ele) sum++;
         }
         return sum > nums.length / 2 ? ele : -1;
+    }
+
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> map = new HashMap<>();
+        for (int i = 0; i < strs.length; i++) {
+            char[] chars = strs[i].toCharArray();
+            Arrays.sort(chars);
+            StringBuilder sb = new StringBuilder();
+            for (int j = 0; j < chars.length; j++) {
+                sb.append(chars[j]);
+            }
+            List<String> list = map.getOrDefault(sb.toString(),new ArrayList<>());
+            list.add(strs[i]);
+            map.put(sb.toString(),list);
+        }
+        List<List<String>> ans = new ArrayList<>(map.values());
+        return ans;
     }
 }
