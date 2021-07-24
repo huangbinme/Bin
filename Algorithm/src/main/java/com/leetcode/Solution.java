@@ -65,4 +65,18 @@ public class Solution {
         List<List<String>> ans = new ArrayList<>(map.values());
         return ans;
     }
+
+    public boolean isOneBitCharacter(int[] bits) {
+        int step = 0, count = 0;
+        while (step < bits.length){
+            if(bits[step] == 0){
+                step++;
+                count = 1;
+            }else {
+                step += 2;
+                count = 2;
+            }
+        }
+        return count == 1;
+    }
 }

@@ -1,45 +1,38 @@
 package com.leetcode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Solution_138 {
-    List<Node> oldNodes = new ArrayList<>();
-    List<Node> newNodes = new ArrayList<>();
 
     public Node copyRandomList(Node head) {
         if (head == null) return null;
-        setUpSets(head);
-        setUpRandom();
-        return linkThenReturn();
-    }
-
-    private Node linkThenReturn() {
-        Node head = newNodes.get(0);
-        for (int i = 0; i < newNodes.size() - 1; i++) {
-            newNodes.get(i).next = newNodes.get(i + 1);
+        Map<Node, Integer> map = new HashMap<>();
+        List<Node> list = new ArrayList<>();
+        Node t = head;
+        int index = 0;
+        while (t != null) {
+            list.add(new Node(t.val));
+            map.put(t, index++);
+            t = t.next;
         }
-        return head;
-    }
-
-    private void setUpRandom() {
-        for (int i = 0; i < oldNodes.size(); i++) {
-            Node random = oldNodes.get(i).random;
-            if (random != null) {
-                int randomIndex = oldNodes.indexOf(random);
-                Node node = newNodes.get(i);
-                node.random = newNodes.get(randomIndex);
+        t = head;
+        index = 0;
+        map.values().forEach(System.out::println);
+        while (t != null) {
+            if (t.random != null){
+                Node n = list.get(index);
+                n.random = list.get(map.get(t.random));
             }
+            index++;
+            t = t.next;
         }
-    }
-
-    private void setUpSets(Node head) {
-        Node tmp = head;
-        while (tmp != null) {
-            oldNodes.add(tmp);
-            newNodes.add(new Node(tmp.val));
-            tmp = tmp.next;
+        for (int i = 0; i < list.size() - 1; i++) {
+            list.get(i).next = list.get(i + 1);
         }
+        return list.get(0);
     }
 
     static class Node {
