@@ -12,10 +12,6 @@ public class MyCalendar {
     }
 
     public boolean book(int start, int end) {
-        if(treeMap.isEmpty()){
-            treeMap.put(start,end);
-            return true;
-        }
         Integer key1 = treeMap.ceilingKey(start);
         Integer key2 = treeMap.floorKey(start);
         if(key1 != null && !(key1 >= end || treeMap.get(key1) <= start)) return false;
