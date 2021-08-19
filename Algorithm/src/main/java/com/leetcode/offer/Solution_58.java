@@ -12,4 +12,8 @@ public class Solution_58 {
         }
         return stringBuilder.toString().trim();
     }
+
+    public String reverseLeftWords(String s, int n) {
+        return s.substring(n) + s.substring(0, n);
+    }
 }
