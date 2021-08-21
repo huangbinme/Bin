@@ -1,7 +1,6 @@
 package com.leetcode;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Solution {
     int ans = 0;
@@ -58,9 +57,9 @@ public class Solution {
             for (int j = 0; j < chars.length; j++) {
                 sb.append(chars[j]);
             }
-            List<String> list = map.getOrDefault(sb.toString(),new ArrayList<>());
+            List<String> list = map.getOrDefault(sb.toString(), new ArrayList<>());
             list.add(strs[i]);
-            map.put(sb.toString(),list);
+            map.put(sb.toString(), list);
         }
         List<List<String>> ans = new ArrayList<>(map.values());
         return ans;
@@ -68,15 +67,69 @@ public class Solution {
 
     public boolean isOneBitCharacter(int[] bits) {
         int step = 0, count = 0;
-        while (step < bits.length){
-            if(bits[step] == 0){
+        while (step < bits.length) {
+            if (bits[step] == 0) {
                 step++;
                 count = 1;
-            }else {
+            } else {
                 step += 2;
                 count = 2;
             }
         }
         return count == 1;
+    }
+
+    public int minTimeToType(String word) {
+        int ans = 0;
+        char cur = 'a';
+        for (int i = 0; i < word.length(); i++) {
+            int num = Math.abs(word.charAt(i) - cur);
+            if (num <= 13) {
+                ans += num;
+            } else {
+                ans += 26 - num;
+            }
+            cur = word.charAt(i);
+        }
+        ans += word.length();
+        return ans;
+    }
+
+    public long maxMatrixSum(int[][] matrix) {
+        long ans = 0;
+        List<Integer> list = new ArrayList<>();
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] > 0) {
+                    ans += matrix[i][j];
+                    min = Math.min(min, matrix[i][j]);
+                } else {
+                    list.add(matrix[i][j]);
+                }
+            }
+        }
+        if (list.size() != 0) {
+            if (list.size() % 2 == 0) {
+                for (Integer integer : list) {
+                    ans += Math.abs(integer);
+                }
+            } else {
+                list.sort(Comparator.naturalOrder());
+                int last = list.get(list.size() - 1);
+                if (Math.abs(min) < Math.abs(last)) {
+                    ans -= min;
+                    ans += min * -1;
+                    ans += last * -1;
+                } else {
+                    ans += last;
+                }
+                for (int i = 0; i < list.size() - 1; i++) {
+                    ans += Math.abs(list.get(i));
+                }
+            }
+        }
+        return ans;
+        //34
     }
 }

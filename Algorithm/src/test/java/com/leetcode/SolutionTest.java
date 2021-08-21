@@ -27,5 +27,11 @@ public class SolutionTest {
 
     @Test
     public void testNumWays() {
+        Solution solution = new Solution();
+        int[][] ints = new int[3][3];
+        ints[0] = new int[]{1,2,3};
+        ints[1] = new int[]{-1,-2,-3};
+        ints[2] = new int[]{1,2,3};
+        solution.maxMatrixSum(ints);
     }
 }
