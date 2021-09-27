@@ -24,10 +24,21 @@ public class Solution_673 {
         }
         int ans = 0;
         for (int i = 0; i < count.length; i++) {
-            if(dp[i] == maxLength){
+            if (dp[i] == maxLength) {
                 ans += count[i];
             }
         }
         return ans;
+    }
+
+    public int jumpFloorII(int target) {
+        int[] dp = new int[target];
+        int count = 0;
+        for (int i = 0; i < dp.length; i++) {
+            dp[i] = 1;
+            dp[i] += count;
+            count += dp[i];
+        }
+        return dp[dp.length - 1];
     }
 }
