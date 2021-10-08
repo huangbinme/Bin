@@ -1,16 +1,20 @@
 package com.leetcode;
 
-import java.util.TreeSet;
-
 public class Solution_414 {
     public int thirdMax(int[] nums) {
-        TreeSet<Integer> set = new TreeSet<>();
+        long a = Long.MIN_VALUE, b = Long.MIN_VALUE, c = Long.MIN_VALUE;
         for (int i = 0; i < nums.length; i++) {
-            set.add(nums[i]);
-            if (set.size() > 3) {
-                set.pollFirst();
+            if (nums[i] > c) {
+                a = b;
+                b = c;
+                c = nums[i];
+            } else if (nums[i] < c && nums[i] > b) {
+                a = b;
+                b = nums[i];
+            } else if (nums[i] < b && nums[i] > a) {
+                a = nums[i];
             }
         }
-        return set.size() < 3 ? set.pollLast() : set.pollFirst();
+        return a == Long.MIN_VALUE ? (int) c : (int) a;
     }
 }
