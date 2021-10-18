@@ -2,29 +2,26 @@ package com.leetcode;
 
 public class Solution_38 {
     public String countAndSay(int n) {
-        String dp = "1";
-        for (int i = 0; i < n - 1; i++) {
-            dp = set(dp);
-        }
-        return dp;
-    }
-
-    private String set(String s) {
-        StringBuilder stringBuilder = new StringBuilder();
-        int index = 0;
-        char comparingChar = s.charAt(0);
-        int comparingCharCount = 0;
-        while (index < s.length()) {
-            while (index < s.length() && s.charAt(index) == comparingChar) {
-                index++;
-                comparingCharCount++;
+        String str = "1";
+        for (int i = 1; i < n; i++) {
+            StringBuilder sb = new StringBuilder();
+            int count = 1;
+            for (int j = 1; j <= str.length(); j++) {
+                if (j == str.length()) {
+                    sb.append((char) ('0' + count));
+                    sb.append(str.charAt(j - 1));
+                } else {
+                    if (str.charAt(j) != str.charAt(j - 1)) {
+                        sb.append((char) ('0' + count));
+                        sb.append(str.charAt(j - 1));
+                        count = 1;
+                    } else {
+                        count++;
+                    }
+                }
             }
-            stringBuilder.append(comparingCharCount).append(comparingChar);
-            if (index < s.length()) {
-                comparingChar = s.charAt(index);
-                comparingCharCount = 0;
-            }
+            str = sb.toString();
         }
-        return stringBuilder.toString();
+        return str;
     }
 }
