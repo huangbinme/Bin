@@ -1,15 +1,40 @@
 package com.leetcode;
 
-import java.util.Comparator;
-import java.util.PriorityQueue;
-
 public class Solution_215 {
     public int findKthLargest(int[] nums, int k) {
-        PriorityQueue<Integer> queue = new PriorityQueue<>(Comparator.naturalOrder());
-        for (int i = 0; i < nums.length; i++) {
-            queue.offer(nums[i]);
-            if(queue.size() > k) queue.poll();
+        init(nums);
+        for (int i = nums.length - 1; i >= 0; i--) {
+            swap(nums, 0, i);
+            build(nums, 0, i);
+            if (i + k == nums.length) break;
         }
-        return queue.peek();
+        return nums[nums.length - k];
+    }
+
+    private void init(int[] nums) {
+        for (int i = nums.length - 1; i >= 0; i--) {
+            build(nums, i, nums.length);
+        }
+    }
+
+    private void build(int[] nums, int start, int size) {
+        int r = 2 * start + 1, l = r + 1;
+        int largest = start;
+        if (r < size && nums[r] > nums[largest]) {
+            largest = r;
+        }
+        if (l < size && nums[l] > nums[largest]) {
+            largest = l;
+        }
+        if (largest != start) {
+            swap(nums, largest, start);
+            build(nums, largest, size);
+        }
+    }
+
+    private void swap(int[] nums, int i, int j) {
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
     }
 }

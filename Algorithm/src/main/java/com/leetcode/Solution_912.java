@@ -2,16 +2,33 @@ package com.leetcode;
 
 public class Solution_912 {
     public int[] sortArray(int[] nums) {
-        for (int i = nums.length / 2; i >= 1; i /= 2) {
-            for (int j = 0; j < i; j++) {
-                for (int k = j + i; k < nums.length; k += i) {
-                    for (int l = k; l - i >= 0 && nums[l - i] > nums[l]; l -= i) {
-                        swap(nums, l - i, l);
-                    }
-                }
-            }
+        init(nums);
+        for (int i = nums.length - 1; i > 0; i--) {
+            swap(nums, 0, i);
+            build(nums, 0, i);
         }
         return nums;
+    }
+
+    private void init(int[] nums) {
+        for (int i = nums.length - 1; i >= 0; i--) {
+            build(nums, i, nums.length);
+        }
+    }
+
+    private void build(int[] nums, int start, int size) {
+        int r = 2 * start + 1, l = r + 1;
+        int largest = start;
+        if (r < size && nums[r] > nums[largest]) {
+            largest = r;
+        }
+        if (l < size && nums[l] > nums[largest]) {
+            largest = l;
+        }
+        if (largest != start) {
+            swap(nums, largest, start);
+            build(nums, largest, size);
+        }
     }
 
     private void swap(int[] nums, int i, int j) {
