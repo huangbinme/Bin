@@ -2,38 +2,36 @@ package com.leetcode;
 
 public class Solution_912 {
     public int[] sortArray(int[] nums) {
-        init(nums);
-        for (int i = nums.length - 1; i > 0; i--) {
-            swap(nums, 0, i);
-            build(nums, 0, i);
-        }
-        return nums;
+        return mergeSort(nums, 0, nums.length);
     }
 
-    private void init(int[] nums) {
-        for (int i = nums.length - 1; i >= 0; i--) {
-            build(nums, i, nums.length);
-        }
+    private int[] mergeSort(int[] nums, int start, int end) {
+        if (end - start == 1) return new int[]{nums[start]};
+        int mid = (end - start) / 2 + start;
+        int[] l = mergeSort(nums, start, mid);
+        int[] r = mergeSort(nums, mid, end);
+        return merge(l, r);
     }
 
-    private void build(int[] nums, int start, int size) {
-        int r = 2 * start + 1, l = r + 1;
-        int largest = start;
-        if (r < size && nums[r] > nums[largest]) {
-            largest = r;
+    private int[] merge(int[] ints1, int[] ints2) {
+        int[] tmp = new int[ints1.length + ints2.length];
+        int i1 = 0, i2 = 0, t = 0;
+        while (i1 < ints1.length && i2 < ints2.length) {
+            if (ints1[i1] <= ints2[i2]) {
+                tmp[t++] = ints1[i1++];
+            } else {
+                tmp[t++] = ints2[i2++];
+            }
         }
-        if (l < size && nums[l] > nums[largest]) {
-            largest = l;
+        if (i1 == ints1.length) {
+            for (int i = t; i < tmp.length; i++) {
+                tmp[i] = ints2[i2++];
+            }
+        } else {
+            for (int i = t; i < tmp.length; i++) {
+                tmp[i] = ints1[i1++];
+            }
         }
-        if (largest != start) {
-            swap(nums, largest, start);
-            build(nums, largest, size);
-        }
-    }
-
-    private void swap(int[] nums, int i, int j) {
-        int t = nums[i];
-        nums[i] = nums[j];
-        nums[j] = t;
+        return tmp;
     }
 }
