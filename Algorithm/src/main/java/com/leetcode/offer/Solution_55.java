@@ -1,12 +1,18 @@
 package com.leetcode.offer;
 
 public class Solution_55 {
-    public int maxDepth(TreeNode root) {
-        return dfs(root, 0);
+    boolean ans = true;
+
+    public boolean isBalanced(TreeNode root) {
+        deep(root, 0);
+        return ans;
     }
 
-    private int dfs(TreeNode treeNode, int i) {
-        if (treeNode == null) return i;
-        return Math.max(dfs(treeNode.right, i + 1), dfs(treeNode.left, i + 1));
+    public int deep(TreeNode t, int d) {
+        if (t == null) return d;
+        int l = deep(t.left, d + 1);
+        int r = deep(t.right, d + 1);
+        if (Math.abs(l - r) > 1) ans = false;
+        return Math.max(l, r);
     }
 }
