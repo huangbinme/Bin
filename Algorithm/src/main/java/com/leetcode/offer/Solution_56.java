@@ -23,18 +23,14 @@ public class Solution_56 {
         for (int i = 0; i < nums.length; i++) {
             int n = nums[i];
             for (int j = 0; j < 32; j++) {
-                if (n % 2 != 0) {
-                    ints[ints.length - 1 - j]++;
-                }
+                ints[ints.length - 1 - j] += n % 2 != 0 ? 1 : 0;
                 n = n >>> 1;
             }
         }
         int ans = 0;
         for (int i = 0; i < ints.length; i++) {
             ints[i] %= 3;
-            if (ints[i] != 0) {
-                ans += 1 << (31 - i);
-            }
+            if (ints[i] != 0) ans += 1 << (31 - i);
         }
         return ans;
     }
