@@ -12,7 +12,7 @@ public class Solution_455 {
                 ans++;
                 sIndex++;
                 gIndex++;
-            }else {
+            } else {
                 sIndex++;
             }
         }

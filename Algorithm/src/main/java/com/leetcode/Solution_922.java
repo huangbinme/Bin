@@ -8,7 +8,7 @@ public class Solution_922 {
             if (nums[i] % 2 == 0) {
                 ans[evenIndex] = nums[i];
                 evenIndex += 2;
-            }else {
+            } else {
                 ans[oddIndex] = nums[i];
                 oddIndex += 2;
             }

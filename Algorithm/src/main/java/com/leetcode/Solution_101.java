@@ -9,6 +9,6 @@ public class Solution_101 {
         if (left == null || right == null) {
             return left == null && right == null;
         }
-        return left.val == right.val && check(left.left,right.right) && check(left.right,right.left);
+        return left.val == right.val && check(left.left, right.right) && check(left.right, right.left);
     }
 }

@@ -4,8 +4,8 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 public class Solution_907 {
-    long ans = 0;
     final long mod = 1000000007;
+    long ans = 0;
 
     public int sumSubarrayMins(int[] arr) {
         Deque<int[]> deque = new LinkedList<>();
@@ -20,7 +20,7 @@ public class Solution_907 {
     private void inQueue(Deque<int[]> deque, int num, int index) {
         while (!deque.isEmpty() && deque.peekLast()[0] >= num) {
             int[] out = deque.pollLast();
-            if(!deque.isEmpty()){
+            if (!deque.isEmpty()) {
                 int left = out[1] - deque.peekLast()[1];
                 int right = index - out[1];
                 ans += (long) out[0] * (left * right);

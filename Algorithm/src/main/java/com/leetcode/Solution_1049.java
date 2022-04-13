@@ -10,7 +10,7 @@ public class Solution_1049 {
 
     private void dfs(int[] stones, int index, int sum) {
         if (index == stones.length) {
-            if(sum >= 0) ans = Math.min(ans, sum);
+            if (sum >= 0) ans = Math.min(ans, sum);
             return;
         }
         dfs(stones, index + 1, sum + stones[index]);

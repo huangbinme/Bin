@@ -6,7 +6,7 @@ public class Solution_42 {
         for (int i = 0; i < nums.length; i++) {
             preSum += nums[i];
             ans = Math.max(ans, preSum - minPreSum);
-            minPreSum = Math.min(minPreSum,preSum);
+            minPreSum = Math.min(minPreSum, preSum);
         }
         return ans;
     }

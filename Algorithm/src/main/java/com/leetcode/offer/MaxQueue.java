@@ -18,7 +18,7 @@ public class MaxQueue {
 
     public void push_back(int value) {
         deque.offerLast(value);
-        while (!monoDeque.isEmpty() && monoDeque.peekLast() < value){
+        while (!monoDeque.isEmpty() && monoDeque.peekLast() < value) {
             monoDeque.pollLast();
         }
         monoDeque.offerLast(value);

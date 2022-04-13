@@ -22,7 +22,7 @@ public class Solution_138 {
         index = 0;
         map.values().forEach(System.out::println);
         while (t != null) {
-            if (t.random != null){
+            if (t.random != null) {
                 Node n = list.get(index);
                 n.random = list.get(map.get(t.random));
             }

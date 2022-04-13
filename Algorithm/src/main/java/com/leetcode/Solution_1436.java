@@ -11,7 +11,7 @@ public class Solution_1436 {
             set.add(path.get(0));
         }
         for (List<String> path : paths) {
-            if(!set.contains(path.get(1))) return path.get(1);
+            if (!set.contains(path.get(1))) return path.get(1);
         }
         return "";
     }

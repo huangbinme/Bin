@@ -13,10 +13,10 @@ public class Solution_914 {
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             if (x == -1) {
                 x = entry.getValue();
-            }else {
-                x = gcd(x,entry.getValue());
+            } else {
+                x = gcd(x, entry.getValue());
             }
-            if(x == 1) return false;
+            if (x == 1) return false;
         }
         return true;
     }

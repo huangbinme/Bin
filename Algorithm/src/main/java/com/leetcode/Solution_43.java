@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Solution_43 {
 
-    Map<Integer,String> map = new HashMap<>();
+    Map<Integer, String> map = new HashMap<>();
 
     public String multiply(String num1, String num2) {
         if ("0".equals(num1) || "0".equals(num2)) return "0";
@@ -21,7 +21,7 @@ public class Solution_43 {
     }
 
     private String calMul(String num1, int num) {
-        if(map.containsKey(num)) return map.get(num);
+        if (map.containsKey(num)) return map.get(num);
         StringBuilder sb = new StringBuilder();
         int index = num1.length() - 1, carry = 0;
         while (index >= 0 || carry != 0) {
@@ -30,7 +30,7 @@ public class Solution_43 {
             carry = (mul + carry) / 10;
             sb.insert(0, cur);
         }
-        map.put(num,sb.toString());
+        map.put(num, sb.toString());
         return sb.toString();
     }
 

@@ -1,6 +1,9 @@
 package com.leetcode;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
 
 public class Solution_451 {
     public String frequencySort(String s) {
@@ -13,7 +16,7 @@ public class Solution_451 {
             queue.add(new Num(entry.getKey(), entry.getValue()));
         }
         StringBuilder sb = new StringBuilder();
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             Num num = queue.poll();
             for (int i = 0; i < num.count; i++) {
                 sb.append(num.character);

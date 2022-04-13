@@ -7,7 +7,7 @@ public class Solution_58 {
             end--;
         }
         int start = end;
-        while (start >= 0 && s.charAt(start) != ' '){
+        while (start >= 0 && s.charAt(start) != ' ') {
             start--;
         }
         return end - start;

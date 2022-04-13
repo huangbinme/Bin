@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 public class Solution_84 {
     int ans = 0;
+
     public int largestRectangleArea(int[] heights) {
         Deque<int[]> deque = new LinkedList<>();
         deque.offerLast(new int[]{0, 0});
@@ -19,7 +20,7 @@ public class Solution_84 {
         while (!deque.isEmpty() && deque.peekLast()[0] >= height) {
             //Calculation when pop element, then we can get border of left and right
             int[] out = deque.pollLast();
-            if(!deque.isEmpty()){
+            if (!deque.isEmpty()) {
                 int left = out[1] - deque.peekLast()[1] - 1;
                 int right = index - out[1];
                 ans = Math.max(ans, (left + right) * out[0]);

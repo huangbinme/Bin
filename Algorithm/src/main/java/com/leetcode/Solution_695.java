@@ -8,7 +8,7 @@ public class Solution_695 {
             for (int j = 0; j < grid[0].length; j++) {
                 if (grid[i][j] == 1 && !booleans[i][j]) {
                     int sub = calArea(grid, booleans, i, j, 0);
-                    ans = Math.max(ans,sub);
+                    ans = Math.max(ans, sub);
                 }
             }
         }

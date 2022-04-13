@@ -8,6 +8,7 @@ public class StockSpanner {
 
     Deque<int[]> deque;
     int index;
+
     public StockSpanner() {
         deque = new LinkedList<>();
         index = 0;

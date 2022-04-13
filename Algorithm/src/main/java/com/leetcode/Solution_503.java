@@ -17,7 +17,7 @@ public class Solution_503 {
             while (!deque.isEmpty() && copy[i] >= deque.peekFirst()) {
                 deque.pollFirst();
             }
-            if(i < nums.length){
+            if (i < nums.length) {
                 ans[i] = deque.size() == 0 ? -1 : deque.peekFirst();
             }
             deque.offerFirst(copy[i]);

@@ -7,9 +7,9 @@ public class Solution_11 {
             int mid = getMid(l, r);
             if (numbers[mid] < numbers[r]) {
                 r = mid;
-            } else if(numbers[mid] > numbers[r]){
+            } else if (numbers[mid] > numbers[r]) {
                 l = mid;
-            }else {
+            } else {
                 r--;
             }
         }

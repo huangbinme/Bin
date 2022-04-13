@@ -17,10 +17,10 @@ public class MinStack {
 
     public void push(int val) {
         deque.offerLast(val);
-        if(minDeque.isEmpty()){
+        if (minDeque.isEmpty()) {
             minDeque.offerLast(val);
-        }else {
-            if (minDeque.peekLast()>=val) {
+        } else {
+            if (minDeque.peekLast() >= val) {
                 minDeque.offerLast(val);
             }
         }

@@ -7,7 +7,7 @@ public class Solution_645 {
             int i = Math.abs(num) - 1;
             if (nums[i] > 0) {
                 nums[i] *= -1;
-            }else {
+            } else {
                 dup = Math.abs(num);
             }
         }

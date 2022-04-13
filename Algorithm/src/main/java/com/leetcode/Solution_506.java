@@ -22,11 +22,11 @@ public class Solution_506 {
     private String getSortStr(int order) {
         if (order == 1) {
             return "Gold Medal";
-        }else if(order == 2){
+        } else if (order == 2) {
             return "Silver Medal";
-        }else if(order == 3){
+        } else if (order == 3) {
             return "Bronze Medal";
-        }else {
+        } else {
             return String.valueOf(order);
         }
     }

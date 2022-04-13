@@ -9,7 +9,7 @@ public class Solution_650 {
                 ans += i;
             }
         }
-        if(n != 1) ans += n;
+        if (n != 1) ans += n;
         return ans;
     }
 }

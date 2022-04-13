@@ -15,7 +15,7 @@ public class Solution_1104 {
             if (i % 2 != 0) {
                 int num = ans.get(i);
                 int newNum = loop * 2 - 1 - (num - loop);
-                ans.set(i,newNum);
+                ans.set(i, newNum);
             }
             loop *= 2;
         }

@@ -4,7 +4,7 @@ public class Solution_51 {
     int ans = 0;
 
     public int reversePairs(int[] nums) {
-        if(nums.length == 0) return 0;
+        if (nums.length == 0) return 0;
         merge(nums, 0, nums.length);
         return ans;
     }

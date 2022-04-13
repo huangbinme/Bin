@@ -15,7 +15,7 @@ public class Solution_382 {
     public int getRandom() {
         int ans = 0, count = 0;
         ListNode l = head;
-        while (l != null){
+        while (l != null) {
             count++;
             ans = random.nextInt(count) == 0 ? l.val : ans;
             l = l.next;

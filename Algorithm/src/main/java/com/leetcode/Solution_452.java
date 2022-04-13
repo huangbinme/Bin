@@ -11,9 +11,10 @@ public class Solution_452 {
             if (points[i][0] > base) {
                 ans++;
                 base = points[i][1];
-            }else {
+            } else {
                 base = Math.min(base, points[i][1]);
             }
         }
-        return ans;    }
+        return ans;
+    }
 }

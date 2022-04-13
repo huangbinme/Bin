@@ -7,7 +7,7 @@ public class Solution_881 {
         Arrays.sort(people);
         int r = 0, l = people.length - 1, ans = 0;
         while (r <= l) {
-            if(r == l){
+            if (r == l) {
                 ans++;
                 break;
             }

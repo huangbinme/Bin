@@ -10,7 +10,7 @@ public class Solution_50 {
             map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
         }
         for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-            if(entry.getValue().equals(1)) return entry.getKey();
+            if (entry.getValue().equals(1)) return entry.getKey();
         }
         return ' ';
     }
