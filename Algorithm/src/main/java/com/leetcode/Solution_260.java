@@ -2,19 +2,19 @@ package com.leetcode;
 
 public class Solution_260 {
     public int[] singleNumber(int[] nums) {
-        int n = 0;
+        int num = 0;
         for (int i = 0; i < nums.length; i++) {
-            n ^= nums[i];
+            num ^= nums[i];
         }
-        n = n & (-n);
-        int[] ans = new int[2];
+        int lowBit = num & -num;
+        int ans1 = 0, ans2 = 0;
         for (int i = 0; i < nums.length; i++) {
-            if ((nums[i] & n) == 0) {
-                ans[0] ^= nums[i];
-            } else {
-                ans[1] ^= nums[i];
+            if ((nums[i] & lowBit) == 0) {
+                ans1 ^= nums[i];
+            }else {
+                ans2 ^= nums[i];
             }
         }
-        return ans;
+        return new int[]{ans1, ans2};
     }
 }
