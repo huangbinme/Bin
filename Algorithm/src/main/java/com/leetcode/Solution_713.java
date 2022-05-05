@@ -2,16 +2,13 @@ package com.leetcode;
 
 public class Solution_713 {
     public int numSubarrayProductLessThanK(int[] nums, int k) {
-        if (k == 0) return 0;
-        int l = 0, r = 0, ans = 0, sum = 1;
+        int l = 0, r = 0, c = 1, ans = 0;
         while (r < nums.length) {
-            sum *= nums[r];
-            while (sum >= k && r < nums.length) {
-                sum /= nums[l++];
-                if (l > r) r = l;
+            c *= nums[r];
+            while (c >= k && l < r) {
+                c /= nums[l++];
             }
-            if (r >= nums.length) break;
-            ans += (r - l + 1);
+            if (c < k) ans += (r - l + 1);
             r++;
         }
         return ans;
