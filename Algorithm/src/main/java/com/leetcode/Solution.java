@@ -5,6 +5,8 @@ import java.util.*;
 public class Solution {
     int ans = 0;
 
+
+
     public int numWays(int n, int[][] relation, int k) {
         dfs(n, relation, k, 0, 0);
         return ans;
