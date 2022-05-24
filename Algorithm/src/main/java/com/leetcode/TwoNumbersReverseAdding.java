@@ -19,7 +19,6 @@ public class TwoNumbersReverseAdding {
                 tmp = tmp.next;
             }
         }
-
         StringBuffer str = new StringBuffer();
         for (Integer i : list) {
             str.append(i.toString());
