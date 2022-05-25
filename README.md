@@ -12,3 +12,6 @@
 
 ###### Java思维导图知识体系
 
+## Thanks
+
+[<img alt="PyCharm" height="150" src="jb_beam.png" width="150"/>]( https://jb.gg/OpenSourceSupport.)
