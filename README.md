@@ -14,4 +14,4 @@
 
 ## Thanks
 
-[<img alt="Intellj IDEA" height="150" src="jb_beam.png" width="150"/>]( https://jb.gg/OpenSourceSupport.)
+[<img alt="Intellj IDEA" height="150" src="jb_beam.png" width="150"/>]( https://jb.gg/OpenSourceSupport)
