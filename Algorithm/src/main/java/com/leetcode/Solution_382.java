@@ -4,21 +4,22 @@ import java.util.Random;
 
 public class Solution_382 {
 
-    ListNode head;
+    ListNode listNode;
+
     Random random;
 
     public Solution_382(ListNode head) {
-        this.random = new Random();
-        this.head = head;
+        listNode = head;
+        random = new Random();
     }
 
     public int getRandom() {
-        int ans = 0, count = 0;
-        ListNode l = head;
-        while (l != null) {
-            count++;
-            ans = random.nextInt(count) == 0 ? l.val : ans;
-            l = l.next;
+        int c = 1, ans = 0;
+        ListNode t = listNode;
+        while (t != null) {
+            ans = random.nextInt(c) == 0 ? t.val : ans;
+            t = t.next;
+            c++;
         }
         return ans;
     }
