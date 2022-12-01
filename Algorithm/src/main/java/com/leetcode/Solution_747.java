@@ -2,16 +2,17 @@ package com.leetcode;
 
 public class Solution_747 {
     public int dominantIndex(int[] nums) {
-        int max = nums[0], index = 0;
+        if (nums.length == 1) return -1;
+        int max = -1, sec = -1, ans = -1;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] > max) {
-                index = i;
+                sec = max;
                 max = nums[i];
+            }else if(nums[i] > sec){
+                sec = nums[i];
             }
+            if (nums[i] == max) ans = i;
         }
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != max && max < nums[i] * 2) return -1;
-        }
-        return index;
+        return max >= sec * 2 ? ans : -1;
     }
 }
