@@ -12,4 +12,3 @@ public class Solution_2283 {
         return true;
     }
 }
-˚
