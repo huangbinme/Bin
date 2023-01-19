@@ -25,8 +25,8 @@ public class Solution_1584 {
             pointCount++;
             int[] p = mark.get(e.x) ? e.y : e.x;
             for (Map.Entry<int[], Boolean> entry : mark.entrySet()) {
-                if(!equals(entry.getKey(),p) && !entry.getValue()){
-                    queue.add(new Edge(p,entry.getKey()));
+                if (!equals(entry.getKey(), p) && !entry.getValue()) {
+                    queue.add(new Edge(p, entry.getKey()));
                 }
             }
             mark.put(p, true);
@@ -34,7 +34,7 @@ public class Solution_1584 {
         return ans;
     }
 
-    private boolean equals(int[] x, int[] y){
+    private boolean equals(int[] x, int[] y) {
         return x[0] == y[0] && x[1] == y[1];
     }
 

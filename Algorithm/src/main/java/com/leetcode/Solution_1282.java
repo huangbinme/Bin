@@ -12,7 +12,7 @@ public class Solution_1282 {
             List<List<Integer>> list = map.getOrDefault(groupSizes[i], new ArrayList<>());
             if (!list.isEmpty() && list.get(list.size() - 1).size() < groupSizes[i]) {
                 list.get(list.size() - 1).add(i);
-            }else {
+            } else {
                 List<Integer> sub = new ArrayList<>();
                 sub.add(i);
                 list.add(sub);

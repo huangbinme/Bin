@@ -13,7 +13,7 @@ public class Solution_2 {
             l1 = l1 != null ? l1.next : null;
             l2 = l2 != null ? l2.next : null;
         }
-        if(guard != 0) tmp.next = new ListNode(guard);
+        if (guard != 0) tmp.next = new ListNode(guard);
         return ans.next;
     }
 }

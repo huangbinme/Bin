@@ -12,7 +12,8 @@ public class Solution_2287 {
         }
         return ans == Integer.MAX_VALUE ? 0 : ans;
     }
-    private int[] getCount(String s){
+
+    private int[] getCount(String s) {
         int[] count = new int[26];
         for (int i = 0; i < s.length(); i++) {
             count[s.charAt(i) - 'a']++;

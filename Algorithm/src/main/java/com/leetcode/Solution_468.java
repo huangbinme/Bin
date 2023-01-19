@@ -15,7 +15,8 @@ public class Solution_468 {
             String s = split[i];
             if (!(s.length() >= 1 && s.length() <= 4)) return false;
             for (int j = 0; j < s.length(); j++) {
-                if (!((s.charAt(j) - '0' >= 0 && s.charAt(j) - '0' <= 9) || (s.charAt(j) - 'a' >= 0 && s.charAt(j) - 'a' < 6) || (s.charAt(j) - 'A' >= 0 && s.charAt(j) - 'A' < 6))) return false;
+                if (!((s.charAt(j) - '0' >= 0 && s.charAt(j) - '0' <= 9) || (s.charAt(j) - 'a' >= 0 && s.charAt(j) - 'a' < 6) || (s.charAt(j) - 'A' >= 0 && s.charAt(j) - 'A' < 6)))
+                    return false;
             }
         }
         return true;
@@ -39,6 +40,6 @@ public class Solution_468 {
     }
 
     public static void main(String[] args) {
-        System.out.println('G'-'A');
+        System.out.println('G' - 'A');
     }
 }

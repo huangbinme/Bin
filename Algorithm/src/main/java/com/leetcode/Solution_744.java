@@ -5,9 +5,9 @@ public class Solution_744 {
         int l = 0, r = letters.length - 1;
         while (l < r) {
             int mid = l + (r - l) / 2;
-            if(letters[mid] > target){
+            if (letters[mid] > target) {
                 r = mid;
-            }else {
+            } else {
                 l = mid + 1;
             }
         }

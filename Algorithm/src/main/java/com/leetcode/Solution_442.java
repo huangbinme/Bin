@@ -10,7 +10,7 @@ public class Solution_442 {
         for (int i = 0; i < nums.length; i++) {
             if (cp[nums[i] - 1] == 0) {
                 cp[nums[i] - 1]++;
-            }else {
+            } else {
                 list.add(nums[i]);
             }
         }

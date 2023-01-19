@@ -16,7 +16,7 @@ public class Solution_824 {
             r++;
             l = r;
         }
-        ans.deleteCharAt(ans.length()-1);
+        ans.deleteCharAt(ans.length() - 1);
         return ans.toString();
     }
 

@@ -1,6 +1,9 @@
 package com.leetcode;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
 
 public class Solution_347 {
     public int[] topKFrequent(int[] nums, int k) {
@@ -11,7 +14,7 @@ public class Solution_347 {
         PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             queue.offer(new int[]{entry.getKey(), entry.getValue()});
-            if(queue.size() == 4) queue.poll();
+            if (queue.size() == 4) queue.poll();
         }
         int[] ans = new int[k];
         for (int i = 0; i < ans.length; i++) {

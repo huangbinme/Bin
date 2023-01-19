@@ -11,7 +11,7 @@ public class Solution_260 {
         for (int i = 0; i < nums.length; i++) {
             if ((nums[i] & lowBit) == 0) {
                 ans1 ^= nums[i];
-            }else {
+            } else {
                 ans2 ^= nums[i];
             }
         }

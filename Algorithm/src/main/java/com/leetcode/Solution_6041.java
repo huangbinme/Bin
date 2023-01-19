@@ -2,7 +2,6 @@ package com.leetcode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.LockSupport;
 
 public class Solution_6041 {
     public List<Integer> intersection(int[][] nums) {

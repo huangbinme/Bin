@@ -25,7 +25,7 @@ public class Solution_1774 {
             dp[2] = get(t1 + toppingCosts[i], t2 + toppingCosts[i], t3 + toppingCosts[i], t4 + toppingCosts[i], target);
             dp[3] = get(t1 + toppingCosts[i] * 2, t2 + toppingCosts[i] * 2, t3 + toppingCosts[i] * 2, t4 + toppingCosts[i] * 2, target);
         }
-        return get(dp[0], dp[1], dp[2],dp[3], target);
+        return get(dp[0], dp[1], dp[2], dp[3], target);
     }
 
     private int get(int a1, int a2, int a3, int a4, int target) {

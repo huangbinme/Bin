@@ -15,7 +15,7 @@ public class Solution_373 {
         }
         while (ans.size() != k) {
             List<Integer> poll = queue.poll();
-            if(poll == null) break;
+            if (poll == null) break;
             if (poll.get(2) + 1 < nums2.length) {
                 List<Integer> list = new ArrayList<>();
                 list.add(poll.get(0));

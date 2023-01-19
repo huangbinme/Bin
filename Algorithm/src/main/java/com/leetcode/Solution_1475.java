@@ -8,12 +8,12 @@ public class Solution_1475 {
         Deque<Integer> deque = new LinkedList<>();
         int[] ans = new int[prices.length];
         for (int i = prices.length - 1; i >= 0; i--) {
-            while (!deque.isEmpty() && deque.peekFirst() > prices[i]){
+            while (!deque.isEmpty() && deque.peekFirst() > prices[i]) {
                 deque.pollFirst();
             }
-            if(deque.isEmpty()){
+            if (deque.isEmpty()) {
                 ans[i] = prices[i];
-            }else {
+            } else {
                 ans[i] = prices[i] - deque.peekFirst();
             }
             deque.offerFirst(prices[i]);

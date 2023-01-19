@@ -1,8 +1,5 @@
 package com.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Solution_883 {
     public int projectionArea(int[][] grid) {
         int ans = 0;

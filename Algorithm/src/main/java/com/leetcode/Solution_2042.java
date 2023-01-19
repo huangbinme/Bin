@@ -9,7 +9,7 @@ public class Solution_2042 {
                 l = r;
                 while (r < s.length() && s.charAt(r) - '0' >= 0 && s.charAt(r) - '0' <= 9) r++;
                 int cur = Integer.parseInt(s.substring(l, r));
-                if(pre >= cur) return false;
+                if (pre >= cur) return false;
                 pre = cur;
                 r++;
                 l = r;

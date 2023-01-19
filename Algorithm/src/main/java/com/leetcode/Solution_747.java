@@ -8,7 +8,7 @@ public class Solution_747 {
             if (nums[i] > max) {
                 sec = max;
                 max = nums[i];
-            }else if(nums[i] > sec){
+            } else if (nums[i] > sec) {
                 sec = nums[i];
             }
             if (nums[i] == max) ans = i;
