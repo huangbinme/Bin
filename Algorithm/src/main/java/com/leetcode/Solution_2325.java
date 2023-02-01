@@ -17,6 +17,7 @@ public class Solution_2325 {
         for (int i = 0; i < message.length(); i++) {
             ans.append(message.charAt(i) == ' ' ? ' ' : map.get(message.charAt(i)));
         }
+
         return ans.toString();
     }
 }
