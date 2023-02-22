@@ -12,12 +12,7 @@ public class BagProblem {
 
     public int zeroOneBag(int[] weight, int[] value, int bagSize) {
         int[] dp = new int[bagSize + 1];
-        for (int i = 1; i < dp.length; i++) {
-            if (weight[0] <= i) {
-                dp[i] = value[0];
-            }
-        }
-        for (int i = 1; i < weight.length; i++) {//先遍历物品
+        for (int i = 0; i < weight.length; i++) {//先遍历物品
             for (int j = dp.length - 1; j > 0; j--) {
                 //遍历背包的最大容量
                 //0-1背包在一维数组中必须倒序遍历背包的最大容量
@@ -31,12 +26,7 @@ public class BagProblem {
 
     public int completedBag(int[] weight, int[] value, int bagSize) {
         int[] dp = new int[bagSize + 1];
-        for (int i = 1; i < dp.length; i++) {
-            if (weight[0] <= i) {
-                dp[i] = value[0];
-            }
-        }
-        for (int i = 1; i < weight.length; i++) {//先遍历物品
+        for (int i = 0; i < weight.length; i++) {//先遍历物品
             for (int j = 1; j < dp.length; j++) {
                 //遍历背包的最大容量
                 //0-1背包在一维数组中必须正序遍历背包的最大容量

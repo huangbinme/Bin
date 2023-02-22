@@ -1,19 +1,22 @@
 package com.leetcode;
 
+import java.util.Arrays;
+
 public class Solution_1049 {
-    int ans = Integer.MAX_VALUE;
+
 
     public int lastStoneWeightII(int[] stones) {
-        dfs(stones, 0, 0);
-        return ans;
+        int sum = Arrays.stream(stones).sum();
+        int target = sum / 2    ;
+        int[] dp = new int[target + 1];
+        for (int i = 0; i < stones.length; i++) {
+            for (int j = dp.length - 1; j >= 0; j--) {
+                if (j - stones[i] >= 0) {
+                    dp[j] = Math.max(dp[j], dp[j - stones[i]] + stones[i]);
+                }
+            }
+        }
+        return sum - dp[dp.length - 1] * 2;
     }
 
-    private void dfs(int[] stones, int index, int sum) {
-        if (index == stones.length) {
-            if (sum >= 0) ans = Math.min(ans, sum);
-            return;
-        }
-        dfs(stones, index + 1, sum + stones[index]);
-        dfs(stones, index + 1, sum - stones[index]);
-    }
 }
