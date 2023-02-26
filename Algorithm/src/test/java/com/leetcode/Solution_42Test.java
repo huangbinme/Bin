@@ -11,4 +11,8 @@ public class Solution_42Test {
         Solution_42 solution42  = new Solution_42();
         System.out.println(solution42.trap(new int[]{4,2,0,3,2,5}));
     }
+
+    @Test
+    public void testTestTrap() {
+    }
 }
