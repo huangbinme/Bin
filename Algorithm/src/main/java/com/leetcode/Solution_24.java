@@ -1,24 +1,20 @@
 package com.leetcode;
 
 public class Solution_24 {
-
-    boolean ans = false;
-
-    public boolean searchMatrix(int[][] matrix, int target) {
-        dfs(matrix, target, 0, matrix[0].length - 1);
-        return ans;
+    public ListNode swapPairs(ListNode head) {
+        if (head == null) return null;
+        ListNode mock = new ListNode();
+        mock.next = head;
+        swapPairs(mock, head, head.next);
+        return mock.next;
     }
 
-    private void dfs(int[][] matrix, int target, int x, int y) {
-        if (y < 0 || x >= matrix.length) return;
-        if (matrix[x][y] == target) {
-            ans = true;
-            return;
-        }
-        if (matrix[x][y] > target) {
-            dfs(matrix, target, x, y - 1);
-        } else if (matrix[x][y] < target) {
-            dfs(matrix, target, x + 1, y);
-        }
+    private void swapPairs(ListNode p1, ListNode p2, ListNode p3) {
+        if (p1 == null || p2 == null || p3 == null) return;
+        ListNode p3Next = p3.next;
+        p1.next = p3;
+        p3.next = p2;
+        p2.next = p3Next;
+        swapPairs(p2, p2.next, p2.next == null ? null : p2.next.next);
     }
 }

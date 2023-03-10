@@ -13,6 +13,5 @@ public class Solution_24Test {
         ints[2] = new int[]{3, 6, 9, 16, 22};
         ints[3] = new int[]{10, 13, 14, 17, 24};
         ints[4] = new int[]{18, 21, 23, 26, 30};
-        System.out.println(solution_24.searchMatrix(ints, 16));
     }
 }
