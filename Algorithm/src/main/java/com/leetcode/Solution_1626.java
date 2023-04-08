@@ -1,7 +1,9 @@
 package com.leetcode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
 public class Solution_1626 {
     public int bestTeamScore(int[] scores, int[] ages) {
