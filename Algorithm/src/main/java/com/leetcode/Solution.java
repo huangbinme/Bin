@@ -133,4 +133,72 @@ public class Solution {
         return ans;
         //34
     }
+
+    public int[] findMissingAndRepeatedValues(int[][] grid) {
+        int[] note = new int[grid.length * grid.length + 1];
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                note[grid[i][j]]++;
+            }
+        }
+        int[] ans = new int[2];
+        for (int i = 0; i < note.length; i++) {
+            if (note[i] == 0) ans[1] = i;
+            if (note[i] == 2) ans[0] = i;
+        }
+        return ans;
+    }
+
+    public int[][] divideArray(int[] nums, int k) {
+        int[][] ans = new int[nums.length / 3][3];
+        Arrays.sort(nums);
+        int index = 0;
+        for (int i = 0; i < nums.length; i += 3) {
+            ans[index][0] = nums[i];
+            ans[index][1] = nums[i + 1];
+            ans[index][2] = nums[i + 2];
+            index++;
+            if (nums[i + 2] - nums[i] > k) return new int[0][0];
+        }
+        return ans;
+    }
+
+    public long minimumCost(int[] nums) {
+        Arrays.sort(nums);
+        if (nums.length % 2 == 1) {
+            int mid = nums[nums.length / 2];
+            return cost(mid, nums);
+        } else {
+            int mid1 = nums[nums.length / 2 - 1];
+            int mid2 = nums[nums.length / 2];
+            return Math.min(cost(mid1, nums), cost(mid2, nums));
+        }
+    }
+
+    private long cost(int mid, int[] nums) {
+        int large = mid, less = mid;
+        while (!validate(large)) large++;
+        while (!validate(less)) less--;
+        return getAns(large, less, nums);
+    }
+
+    private long getAns(int num1, int num2, int[] nums) {
+        long ans1 = 0, ans2 = 0;
+        for (int i = 0; i < nums.length; i++) {
+            ans1 += Math.abs(num1 - nums[i]);
+            ans2 += Math.abs(num2 - nums[i]);
+        }
+        return Math.min(ans1, ans2);
+    }
+
+    public boolean validate(int num) {
+        String numStr = Integer.toString(num);
+        int i = 0, j = numStr.length() - 1;
+        while (i < j) {
+            if (numStr.charAt(i) != numStr.charAt(j)) return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
 }
