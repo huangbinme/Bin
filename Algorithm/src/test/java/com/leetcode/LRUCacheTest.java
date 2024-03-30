@@ -6,7 +6,7 @@ public class LRUCacheTest extends TestCase {
 
     public void testGet() {
         LRUCache lruCache = new LRUCache(2);
-        lruCache.put(1, 0);
+        lruCache.put(1, 1);
         lruCache.put(2, 2);
         System.out.println(lruCache.get(1));
         lruCache.put(3, 3);
