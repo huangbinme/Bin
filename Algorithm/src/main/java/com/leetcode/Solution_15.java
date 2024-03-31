@@ -14,7 +14,7 @@ public class Solution_15 {
             int l = i + 1, r = nums.length - 1, boundL = i + 1;
             while (l < r) {
                 if (nums[l] + nums[r] == target) {
-                    if (!(l > boundL && nums[l] == nums[l - 1])) { // 跳过第二个数字相同
+                    if (!(l > boundL && nums[l] == nums[l - 1])) { //跳过第二个数字相同
                         List<Integer> sub = Arrays.asList(nums[i], nums[l], nums[r]);
                         ans.add(sub);
                     }
