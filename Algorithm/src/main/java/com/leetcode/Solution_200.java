@@ -2,28 +2,25 @@ package com.leetcode;
 
 public class Solution_200 {
     public int numIslands(char[][] grid) {
-        int count = 0;
+        int ans = 0;
+        boolean[][] note = new boolean[grid.length][grid[0].length];
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == '1') {
-                    count++;
-                    traverse(grid, i, j);
+                if (!note[i][j] && grid[i][j] == '1') {
+                    ans++;
+                    update(i, j, note, grid);
                 }
             }
         }
-        return count;
+        return ans;
     }
-
-    private void traverse(char[][] reverseRecord, int i, int j) {
-        if (!inArea(reverseRecord, i, j) || reverseRecord[i][j] != '1') return;
-        reverseRecord[i][j] = '2';
-        traverse(reverseRecord, i, j + 1);
-        traverse(reverseRecord, i + 1, j);
-        traverse(reverseRecord, i - 1, j);
-        traverse(reverseRecord, i, j - 1);
-    }
-
-    private boolean inArea(char[][] grid, int i, int j) {
-        return i >= 0 && j >= 0 && i < grid.length && j < grid[0].length;
+    private void update(int i, int j, boolean[][] note, char[][] grid) {
+        if (!(i >= 0 && i < note.length && j >= 0 && j < note[0].length)) return;
+        if (grid[i][j] == '0' || note[i][j]) return;
+        note[i][j] = true;
+        update(i - 1, j, note, grid);
+        update(i, j - 1, note, grid);
+        update(i + 1, j, note, grid);
+        update(i, j + 1, note, grid);
     }
 }
