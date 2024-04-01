@@ -2,13 +2,14 @@ package com.leetcode;
 
 public class Solution_2810 {
     public String finalString(String s) {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == 'i') {
-                StringBuilder sb = new StringBuilder(s.substring(0, i));
                 sb.reverse();
-                s = i == s.length() - 1 ? sb.toString() : sb + s.substring(i);
+            } else {
+                sb.append(s.charAt(i));
             }
         }
-        return s.replaceAll("i","");
+        return sb.toString();
     }
 }
