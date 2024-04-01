@@ -2,35 +2,19 @@ package com.leetcode;
 
 public class Solution_33 {
     public int search(int[] nums, int target) {
-        if (nums.length == 1) return nums[0] == target ? 0 : -1;
-        int left = 0;
-        int right = nums.length - 1;
-        int mid = getMid(left, right);
-        while (left + 1 != right) {
-            boolean leftIsSorted = nums[mid] > nums[left];
-            boolean targetInLeft;
-            if (leftIsSorted) {
-                targetInLeft = nums[left] <= target && target <= nums[mid];
+        int l = 0, r = nums.length - 1;
+        while (l < r) {
+            int mid = l + (r - l) / 2;
+            if (nums[l] < nums[mid] && nums[l] <= target && target <= nums[mid]) {
+                r = mid;
+            } else if (nums[mid] < nums[r] && (target <= nums[mid] || nums[r] < target)) {
+                r = mid;
+            } else if (l == mid && nums[l] == target) {
+                r = mid;
             } else {
-                targetInLeft = !(nums[mid] <= target && target <= nums[right]);
-            }
-
-            if (targetInLeft) {
-                right = mid;
-                mid = getMid(left, right);
-            } else {
-                left = mid;
-                mid = getMid(left, right);
+                l = mid + 1;
             }
         }
-        if (nums[left] == target || nums[right] == target) {
-            return nums[left] == target ? left : right;
-        } else {
-            return -1;
-        }
-    }
-
-    private int getMid(int i, int j) {
-        return i + (j - i) / 2;
+        return nums[l] == target ? l : -1;
     }
 }
