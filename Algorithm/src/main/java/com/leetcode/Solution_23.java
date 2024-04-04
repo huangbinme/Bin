@@ -1,46 +1,24 @@
 package com.leetcode;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class Solution_23 {
-
     public ListNode mergeKLists(ListNode[] lists) {
-        if (lists == null) return null;
-        lists = filterNull(lists);
-        if (lists.length == 0) return null;
-        if (lists.length == 1) return lists[0];
-        ListNode head = lists[0];
-        for (int i = 1; i < lists.length; i++) {
-            head = mergeTwoList(head, lists[i]);
+        ListNode dummy = new ListNode();
+        ListNode tmp = dummy;
+        PriorityQueue<ListNode> queue = new PriorityQueue<>(Comparator.comparingInt(l -> l.val));
+        for (int i = 0; i < lists.length; i++) {
+            if (lists[i] != null) queue.add(lists[i]);
         }
-        return head;
-    }
-
-    private ListNode[] filterNull(ListNode[] lists) {
-        return Arrays.stream(lists).filter(Objects::nonNull).toArray(ListNode[]::new);
-    }
-
-    public ListNode mergeTwoList(ListNode listNode1, ListNode listNode2) {
-        ListNode head = new ListNode();
-        ListNode headTmp = head;
-        ListNode listNode1_tmp = listNode1;
-        ListNode listNode2_tmp = listNode2;
-        while (listNode1_tmp != null && listNode2_tmp != null) {
-            if (listNode1_tmp.val <= listNode2_tmp.val) {
-                headTmp.next = listNode1_tmp;
-                listNode1_tmp = listNode1_tmp.next;
-            } else {
-                headTmp.next = listNode2_tmp;
-                listNode2_tmp = listNode2_tmp.next;
-            }
-            headTmp = headTmp.next;
+        while (!queue.isEmpty()) {
+            ListNode l = queue.poll();
+            tmp.next = l;
+            ListNode lNext = l.next;
+            l.next = null;
+            tmp = tmp.next;
+            if (lNext != null) queue.offer(lNext);
         }
-        if (listNode1_tmp == null) {
-            headTmp.next = listNode2_tmp;
-        } else {
-            headTmp.next = listNode1_tmp;
-        }
-        return head.next;
+        return dummy.next;
     }
 }

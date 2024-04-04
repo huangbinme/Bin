@@ -11,7 +11,7 @@ public class Solution_54Test extends TestCase {
         input[1] = new int[]{4, 5, 6};
         input[2] = new int[]{7, 8, 9};
         Solution_54 solution_54 = new Solution_54();
-        solution_54.spiralOrder(input);
+        System.out.println(solution_54.spiralOrder(input));
     }
 
     public void testSpiralOrder1() {
@@ -36,7 +36,7 @@ public class Solution_54Test extends TestCase {
         input[2] = new int[]{9, 10, 11, 12};
         input[3] = new int[]{13, 14, 15, 16};
         Solution_54 solution_54 = new Solution_54();
-        solution_54.spiralOrder(input);
+        System.out.println(solution_54.spiralOrder(input));
     }
 
     @Test
