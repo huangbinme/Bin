@@ -1,46 +1,38 @@
 package com.leetcode;
 
 public class Solution_92 {
+
+    ListNode l4;
+
     public ListNode reverseBetween(ListNode head, int left, int right) {
         if (left == right) return head;
-
-        ListNode preWithLeftNode = null;
-        ListNode leftNode = head;
-        for (int i = 1; i < left; i++) {
-            if (i == left - 1) {
-                preWithLeftNode = leftNode;
-            }
-            leftNode = leftNode.next;
+        // l1 (l2 l3) l4
+        // l1 (l3 l2) l4
+        ListNode dummy = new ListNode();
+        dummy.next = head;
+        ListNode tmp = dummy;
+        ListNode l1 = null, l2 = null, l3 = null;
+        for (int i = 0; i < right; i++) {
+            if (i == left - 1) l1 = tmp;
+            if (i == left) l2 = tmp;
+            tmp = tmp.next;
         }
-
-        ListNode nextWithRightNode;
-        ListNode rightNode = head;
-        for (int i = 1; i < right; i++) {
-            rightNode = rightNode.next;
-        }
-        nextWithRightNode = rightNode.next;
-        rightNode.next = null;
-        reverse(leftNode);
-        leftNode.next = nextWithRightNode;
-
-        if (preWithLeftNode == null) {
-            return rightNode;
-        } else {
-            preWithLeftNode.next = rightNode;
-            return head;
-        }
+        l3 = tmp;
+        ListNode l2_next = l2.next;
+        l2.next = null;
+        l1.next = reverse(l2, l2_next, l3);
+        l2.next = l4;
+        return dummy.next;
     }
 
-    public ListNode reverse(ListNode listNode) {
-        ListNode next = listNode.next;
-        listNode.next = null;
-        return reverse(listNode, next);
-    }
-
-    private ListNode reverse(ListNode listNode, ListNode next) {
-        if (next == null) return listNode;
+    private ListNode reverse(ListNode pre, ListNode next, ListNode tail) {
+        if (next == tail) {
+            l4 = next.next;
+            next.next = pre;
+            return next;
+        }
         ListNode tmp = next.next;
-        next.next = listNode;
-        return reverse(next, tmp);
+        next.next = pre;
+        return reverse(next, tmp, tail);
     }
 }
