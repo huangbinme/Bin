@@ -11,6 +11,7 @@ public class BSTIterator {
     public BSTIterator(TreeNode root) {
         list = new ArrayList<>();
         list.add(Integer.MIN_VALUE);
+
         dfs(root);
     }
 
