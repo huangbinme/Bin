@@ -10,29 +10,29 @@ public class Solution_924 {
         Arrays.sort(initial);
         boolean[] visit = new boolean[graph.length];
         Set<Integer> set = new HashSet<>();
-        for (int s = 0; s < initial.length; s++) {
-            set.add(initial[s]);
-        }
-        int ans = -1, count = 0;
         for (int i = 0; i < initial.length; i++) {
-            int[] c = dfs(graph, visit, set, initial[i]);
-            if (c[0] == 1 && c[1] > count) {
-                count = c[1];
+            set.add(initial[i]);
+        }
+        int ans = initial[0], count = 0;
+        for (int i = 0; i < initial.length; i++) {
+            int[] subAns = dfs(graph, visit, set, initial[i]);
+            if (subAns[0] == 1 && subAns[1] > count) {
+                count = subAns[1];
                 ans = initial[i];
             }
         }
-        return ans == -1 ? initial[0] : ans;
+        return ans;
     }
 
-    private int[] dfs(int[][] graph, boolean[] visit, Set<Integer> initial, int start) {
-        if (visit[start]) return new int[]{0, 0};
-        int[] sub = graph[start];
-        visit[start] = true;
+    private int[] dfs(int[][] graph, boolean[] visit, Set<Integer> initial, int curNode) {
+        if (visit[curNode]) return new int[]{0, 0};
+        int[] sub = graph[curNode];
+        visit[curNode] = true;
         int[] ans = new int[2];
-        ans[0] = initial.contains(start) ? 1 : 0;
+        ans[0] = initial.contains(curNode) ? 1 : 0;
         ans[1] = 1;
         for (int i = 0; i < sub.length; i++) {
-            if (sub[i] == 0 || i == start || visit[i]) continue;
+            if (sub[i] == 0 || i == curNode) continue;
             int[] subC = dfs(graph, visit, initial, i);
             ans[0] += subC[0];
             ans[1] += subC[1];
