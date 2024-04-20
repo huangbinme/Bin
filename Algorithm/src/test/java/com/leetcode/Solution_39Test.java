@@ -10,4 +10,8 @@ public class Solution_39Test {
         Solution_39 solution_39 = new Solution_39();
         solution_39.combinationSum(ints, 7);
     }
+
+    @Test
+    public void testTestCombinationSum() {
+    }
 }

@@ -1,26 +1,28 @@
 package com.leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Solution_39 {
-    public List<List<Integer>> combinationSum(int[] ints, int target) {
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> list = new ArrayList<>();
-        dfs(result, ints, target, list, 0, 0);
-        return result;
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> sub = new ArrayList<>();
+        dfs(candidates, ans, sub, target, 0, 0);
+        return ans;
     }
 
-    private void dfs(List<List<Integer>> result, int[] ints, int target, List<Integer> list, int sum, int begin) {
-        if (sum > target) return;
-        if (sum == target) {
-            result.add(new ArrayList<>(list));
+    private void dfs(int[] candidates, List<List<Integer>> ans, List<Integer> sub, int target, int sum, int start) {
+        if (sum >= target) {
+            if (sum == target) ans.add(new ArrayList<>(sub));
             return;
         }
-        for (int i = begin; i < ints.length; i++) {
-            list.add(ints[i]);
-            dfs(result, ints, target, list, sum + ints[i], i);
-            list.remove(list.size() - 1);
+        for (int i = start; i < candidates.length; i++) {
+            sum += candidates[i];
+            sub.add(candidates[i]);
+            dfs(candidates, ans, sub, target, sum, i);
+            sub.remove(sub.size() - 1);
         }
     }
 }
