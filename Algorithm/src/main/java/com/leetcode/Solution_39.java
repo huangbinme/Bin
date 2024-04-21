@@ -19,9 +19,9 @@ public class Solution_39 {
             return;
         }
         for (int i = start; i < candidates.length; i++) {
-            sum += candidates[i];
+            if (sum + candidates[i] > target) break;
             sub.add(candidates[i]);
-            dfs(candidates, ans, sub, target, sum, i);
+            dfs(candidates, ans, sub, target, sum + candidates[i], i);
             sub.remove(sub.size() - 1);
         }
     }
