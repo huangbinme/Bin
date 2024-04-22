@@ -7,7 +7,7 @@ public class Solution_377 {
         dp[0] = 1;
         for (int i = 1; i < dp.length; i++) {
             for (int num : nums) {
-                if (i - num < i && i - num >= 0) {
+                if (i - num >= 0) {
                     dp[i] += dp[i - num];
                 }
             }
