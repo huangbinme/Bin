@@ -3,20 +3,17 @@ package com.leetcode;
 public class Solution_1052 {
     public int maxSatisfied(int[] customers, int[] grumpy, int X) {
         int ans = 0;
-        int subAns = 0;
+        int[] preSum = new int[customers.length + 1];
         for (int i = 0; i < customers.length; i++) {
-            if (i < X) {
+            if (grumpy[i] == 0) {
                 ans += customers[i];
-                continue;
             }
-            ans += grumpy[i] == 0 ? customers[i] : 0;
+            preSum[i + 1] = preSum[i] + (grumpy[i] == 0 ? 0 : customers[i]);
         }
-        subAns = ans;
-        for (int i = X; i < customers.length; i++) {
-            subAns -= grumpy[i - X] == 1 ? customers[i - X] : 0;
-            subAns += grumpy[i] == 1 ? customers[i] : 0;
-            ans = Math.max(subAns, ans);
+        int max = 0;
+        for (int i = X; i < preSum.length; i++) {
+            max = Math.max(max, preSum[i] - preSum[i - X]);
         }
-        return ans;
+        return ans + max;
     }
 }

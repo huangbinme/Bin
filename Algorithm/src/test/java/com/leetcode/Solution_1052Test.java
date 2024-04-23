@@ -7,7 +7,7 @@ public class Solution_1052Test {
     @Test
     public void testMaxSatisfied() {
         Solution_1052 solution_1052 = new Solution_1052();
-        solution_1052.maxSatisfied(new int[]{5, 8}, new int[]{0, 1}, 1);
+        System.out.println(solution_1052.maxSatisfied(new int[]{10, 4}, new int[]{0, 1}, 2));
     }
 
     @Test
