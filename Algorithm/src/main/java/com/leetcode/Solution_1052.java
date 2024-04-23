@@ -11,6 +11,7 @@ public class Solution_1052 {
             preSum[i + 1] = preSum[i] + (grumpy[i] == 0 ? 0 : customers[i]);
         }
         int max = 0;
+        //change
         for (int i = X; i < preSum.length; i++) {
             max = Math.max(max, preSum[i] - preSum[i - X]);
         }
