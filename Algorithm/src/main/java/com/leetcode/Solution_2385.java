@@ -1,29 +1,24 @@
 package com.leetcode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Solution_2385 {
 
     public int amountOfTime(TreeNode root, int start) {
         Map<Integer, List<Integer>> graph = new HashMap<>();
         dfs(root, graph);
-        int ans = -1;
-        Deque<Integer> deque = new LinkedList<>();
-        deque.offerLast(start);
-        boolean[] visit = new boolean[100001];
-        while (!deque.isEmpty()) {
-            int size = deque.size();
-            for (int i = 0; i < size; i++) {
-                Integer j = deque.pollFirst();
-                visit[j] = true;
-                List<Integer> sub = graph.get(j);
-                if (sub != null) {
-                    for (Integer subNode : sub) {
-                        if (!visit[subNode]) deque.offerLast(subNode);
-                    }
-                }
-            }
-            ans++;
+        return dfs2(graph, start, -1);
+    }
+
+    private int dfs2(Map<Integer, List<Integer>> graph, int cur, int parent) {
+        int ans = 0;
+        List<Integer> subs = graph.getOrDefault(cur, new ArrayList<>());
+        for (Integer sub : subs) {
+            if(sub == parent) continue;
+            ans = Math.max(ans, 1 + dfs2(graph, sub, cur));
         }
         return ans;
     }
