@@ -17,7 +17,7 @@ public class Solution_2385 {
         int ans = 0;
         List<Integer> subs = graph.getOrDefault(cur, new ArrayList<>());
         for (Integer sub : subs) {
-            if(sub == parent) continue;
+            if (sub == parent) continue;
             ans = Math.max(ans, 1 + dfs2(graph, sub, cur));
         }
         return ans;
