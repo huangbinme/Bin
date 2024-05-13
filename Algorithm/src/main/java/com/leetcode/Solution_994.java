@@ -1,61 +1,47 @@
 package com.leetcode;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Solution_994 {
 
     public int orangesRotting(int[][] grid) {
-        boolean hasStale = true;
-        int ans = -1;
-        while (hasStale) {
-            hasStale = false;
-            int[][] newGrid = copy(grid);
-            for (int i = 0; i < grid.length; i++) {
-                for (int j = 0; j < grid[0].length; j++) {
-                    if (grid[i][j] == 2) {
-                        if (check(i - 1, j, grid) && grid[i - 1][j] == 1) {
-                            newGrid[i - 1][j] = 2;
-                            hasStale = true;
-                        }
-                        if (check(i + 1, j, grid) && grid[i + 1][j] == 1) {
-                            newGrid[i + 1][j] = 2;
-                            hasStale = true;
-                        }
-                        if (check(i, j + 1, grid) && grid[i][j + 1] == 1) {
-                            newGrid[i][j + 1] = 2;
-                            hasStale = true;
-                        }
-                        if (check(i, j - 1, grid) && grid[i][j - 1] == 1) {
-                            newGrid[i][j - 1] = 2;
-                            hasStale = true;
-                        }
-                    }
-                }
-            }
-            ans++;
-            grid = newGrid;
-        }
-        return hasNonStale(grid) ? -1 : ans;
-    }
-
-    private boolean hasNonStale(int[][] grid) {
+        List<int[]> staleList = new ArrayList<>();
+        int count = 0, ans = 0;
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == 1) return true;
+                if (grid[i][j] == 2) staleList.add(new int[]{i, j});
+                if (grid[i][j] != 0) count++;
             }
         }
-        return false;
+        int stat = 1;
+        while (stat > 0) {
+            stat = 0;
+            List<int[]> newStaleList = new ArrayList<>(staleList);
+            for (int[] ints : staleList) {
+                int i = ints[0], j = ints[1];
+                stat += affect(i - 1, j, grid, newStaleList);
+                stat += affect(i, j - 1, grid, newStaleList);
+                stat += affect(i + 1, j, grid, newStaleList);
+                stat += affect(i, j + 1, grid, newStaleList);
+            }
+            if (stat > 0) ans++;
+            staleList = newStaleList;
+        }
+        return staleList.size() == count ? ans : -1;
+    }
+
+    private int affect(int i, int j, int[][] grid, List<int[]> newStaleList) {
+        if (check(i, j, grid) && grid[i][j] == 1) {
+            grid[i][j] = 2;
+            newStaleList.add(new int[]{i, j});
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     private boolean check(int i, int j, int[][] grid) {
         return i >= 0 && j >= 0 && i < grid.length && j < grid[0].length;
-    }
-
-    private int[][] copy(int[][] grid) {
-        int[][] copy = new int[grid.length][];
-        for (int i = 0; i < grid.length; i++) {
-            copy[i] = Arrays.copyOf(grid[i], grid[i].length);
-        }
-        return copy;
     }
 }
