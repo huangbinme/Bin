@@ -1,7 +1,5 @@
 package com.leetcode;
 
-import java.util.Arrays;
-
 public class Solution_3131 {
     public int addedInteger(int[] nums1, int[] nums2) {
         int min1 = Integer.MAX_VALUE, min2 = Integer.MAX_VALUE;
