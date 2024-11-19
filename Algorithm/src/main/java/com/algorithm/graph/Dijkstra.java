@@ -17,10 +17,10 @@ public class Dijkstra {
      */
     public int[] getShortestDistance(Map<Integer, Map<Integer, Integer>> graph, int n, int k) {
         int infinity = Integer.MAX_VALUE / 2;//假设距离无穷大
-        PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
         int[] ans = new int[n];
         Arrays.fill(ans, infinity);
         boolean[] loop = new boolean[n];//防止重复遍历
+        PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
         queue.offer(new int[]{k, 0});
         while (!queue.isEmpty()) {
             int[] poll = queue.poll();
