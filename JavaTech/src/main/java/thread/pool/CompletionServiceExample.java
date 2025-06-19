@@ -29,7 +29,6 @@ public class CompletionServiceExample {
             Future<String> take = completionService.take();// 按任务完成的顺序取出结果
             System.out.println(take.get());
         }
-
         executorService.shutdown();
     }
 }
