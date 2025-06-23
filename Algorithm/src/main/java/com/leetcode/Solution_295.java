@@ -30,7 +30,6 @@ public class Solution_295 {
     }
 
     private void addToWin(int[] win, int add) {
-        System.out.println(Arrays.toString(win));
         int find = Arrays.binarySearch(win, add);
         int insert = find >= 0 ? find : find * -1 - 1;
         int i = win.length - 1;
@@ -43,7 +42,7 @@ public class Solution_295 {
 
     public double getMid(int[] win) {
         if (win.length % 2 == 0) {
-            return ((double) win[win.length / 2] + (double)win[win.length / 2 - 1]) / 2.0;
+            return ((double) win[win.length / 2] + (double) win[win.length / 2 - 1]) / 2.0;
         } else {
             return win[win.length / 2];
         }
