@@ -8,22 +8,29 @@ public class QuickSort implements BaseSort {
     }
 
     public void sort(int[] input, int low, int high) {
-        if (low >= high) return;
-        int partitionLocation = partition(input, low, high);
-        sort(input, low, partitionLocation);
-        sort(input, partitionLocation + 1, high);
+        if (low < high) {
+            int pivot = partition(input, low, high);
+            sort(input, low, pivot - 1);
+            sort(input, pivot + 1, high);
+        }
     }
 
     private int partition(int[] input, int low, int high) {
-        int partitionIndex = low;
-        for (int i = low + 1; i <= high; i++) {
-            if (input[i] < input[partitionIndex]) {
-                for (int j = i; j > partitionIndex; j--) {
-                    SortingUtil.exchange(input, j, j - 1);
-                }
-                partitionIndex++;
-            }
+        int pivot = input[high];
+        int l = low, r = high - 1;
+        while (true) {
+            while (l <= r && input[l] <= pivot) l++;
+            while (l <= r && pivot <= input[r]) r--;
+            if (l > r) break;
+            swap(input, l, r);
         }
-        return partitionIndex;
+        swap(input, l, high);
+        return l;
+    }
+
+    private void swap(int[] input, int l, int r) {
+        int t = input[l];
+        input[l] = input[r];
+        input[r] = t;
     }
 }
