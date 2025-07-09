@@ -6,11 +6,10 @@ public class Solution_153 {
         while (l < r) {
             if (r - l == 1) return Math.min(nums[l], nums[r]);
             int mid = l + (r - l) / 2;
-            if (nums[l] < nums[mid] && nums[mid] < nums[r]) {
-                return nums[l];
-            } else if (nums[l] < nums[mid]) {
+            if (nums[l] < nums[mid] && nums[mid] < nums[r]) return nums[l];
+            if (nums[l] < nums[mid]) {
                 l = mid + 1;
-            } else {
+            } else if (nums[mid] < nums[r]) {
                 r = mid;
             }
         }
