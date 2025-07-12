@@ -2,7 +2,7 @@ package thread.print.letter;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class MutiThreadPrintBySync implements Runnable {
+public class MutiThreadPrintBySynchronized implements Runnable {
 
     Object object;
 
@@ -30,7 +30,7 @@ public class MutiThreadPrintBySync implements Runnable {
         }
     }
 
-    public MutiThreadPrintBySync(Object object, AtomicInteger stat, int workerId, String print) {
+    public MutiThreadPrintBySynchronized(Object object, AtomicInteger stat, int workerId, String print) {
         this.object = object;
         this.stat = stat;
         this.workerId = workerId;
