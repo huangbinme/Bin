@@ -1,5 +1,6 @@
 package thread.print.letter;
 
+import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MutiThreadPrintBySynchronized implements Runnable {
@@ -35,5 +36,10 @@ public class MutiThreadPrintBySynchronized implements Runnable {
         this.stat = stat;
         this.workerId = workerId;
         this.print = print;
+    }
+
+    public static void main(String[] args) {
+        Character[][] chars = new Character[3][3];
+        System.out.println(chars[0][0]);
     }
 }

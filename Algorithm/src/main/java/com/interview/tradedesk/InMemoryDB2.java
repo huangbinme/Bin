@@ -1,49 +1,49 @@
-package com;
+package com.interview.tradedesk;
 
 import java.util.*;
 
-public class InMemoryDB {
-    static class Value {
-        String val;
-        Long expireAt; // null means no expiration
+public class InMemoryDB2 {
+    public static class Value {
+        String value;
+        Long expireTime;
 
-        Value(String val, Long expireAt) {
-            this.val = val;
-            this.expireAt = expireAt;
+        Value(String value, Long expireTime) {
+            this.value = value;
+            this.expireTime = expireTime;
         }
 
-        boolean isExpired(long timestamp) {
-            return expireAt != null && timestamp >= expireAt;
+        boolean isExpired(long now) {
+            return expireTime != null && now >= expireTime;
         }
     }
 
-    // DB: key -> field -> value
     Map<String, Map<String, Value>> db = new HashMap<>();
+
     Map<Long, Map<String, Map<String, Value>>> backups = new TreeMap<>();
 
     public void setAt(String key, String field, String value, long timestamp) {
-        db.putIfAbsent(key, new HashMap<>());
-        db.get(key).put(field, new Value(value, null));
+        db.computeIfAbsent(key, k -> new HashMap<>()).put(field, new Value(value, null));
     }
 
     public void setAtWithTTL(String key, String field, String value, long timestamp, long ttl) {
-        db.putIfAbsent(key, new HashMap<>());
-        db.get(key).put(field, new Value(value, timestamp + ttl));
+        db.computeIfAbsent(key, k -> new HashMap<>()).put(field, new Value(value, timestamp + ttl));
     }
 
     public String getAt(String key, String field, long timestamp) {
-        if (!db.containsKey(key)) return "";
-        Value v = db.get(key).get(field);
-        if (v == null || v.isExpired(timestamp)) return "";
-        return v.val;
+        return Optional.of(db)
+                .map(db -> db.get(key))
+                .map(v -> v.get(field))
+                .filter(v -> v.isExpired(timestamp))
+                .map(v -> v.value)
+                .orElse("");
     }
 
     public String deleteAt(String key, String field, long timestamp) {
         if (!db.containsKey(key)) return "false";
         Value v = db.get(key).get(field);
-        if (v == null || v.isExpired(timestamp)) return "false";
+        if (v == null || v.isExpired(timestamp)) return "false";//why?
         db.get(key).remove(field);
-        if (db.get(key).isEmpty()) db.remove(key);
+        if (db.get(key).isEmpty()) db.remove(key);//why?
         return "true";
     }
 
@@ -52,7 +52,7 @@ public class InMemoryDB {
         List<String> res = new ArrayList<>();
         for (Map.Entry<String, Value> entry : db.get(key).entrySet()) {
             if (!entry.getValue().isExpired(timestamp)) {
-                res.add(entry.getKey() + "(" + entry.getValue().val + ")");
+                res.add(entry.getKey() + "(" + entry.getValue().value + ")");
             }
         }
         Collections.sort(res);
@@ -64,7 +64,7 @@ public class InMemoryDB {
         List<String> res = new ArrayList<>();
         for (Map.Entry<String, Value> entry : db.get(key).entrySet()) {
             if (entry.getKey().startsWith(prefix) && !entry.getValue().isExpired(timestamp)) {
-                res.add(entry.getKey() + "(" + entry.getValue().val + ")");
+                res.add(entry.getKey() + "(" + entry.getValue().value + ")");
             }
         }
         Collections.sort(res);
@@ -78,7 +78,7 @@ public class InMemoryDB {
             for (Map.Entry<String, Value> f : e.getValue().entrySet()) {
                 Value v = f.getValue();
                 if (!v.isExpired(timestamp)) {
-                    fields.put(f.getKey(), new Value(v.val, v.expireAt));
+                    fields.put(f.getKey(), new Value(v.value, v.expireTime));
                 }
             }
             if (!fields.isEmpty()) snapshot.put(e.getKey(), fields);
@@ -96,8 +96,8 @@ public class InMemoryDB {
             Map<String, Value> fields = new HashMap<>();
             for (Map.Entry<String, Value> f : e.getValue().entrySet()) {
                 Value v = f.getValue();
-                Long newExpire = v.expireAt == null ? null : nowTimestamp + (v.expireAt - entry.getKey());
-                fields.put(f.getKey(), new Value(v.val, newExpire));
+                Long newExpire = v.expireTime == null ? null : nowTimestamp + (v.expireTime - entry.getKey());
+                fields.put(f.getKey(), new Value(v.value, newExpire));
             }
             restored.put(e.getKey(), fields);
         }
