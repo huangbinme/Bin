@@ -1,32 +1,33 @@
 package com.review;
 
+import java.util.Arrays;
+
 public class Solution_31 {
     public void nextPermutation(int[] nums) {
         if (nums.length == 1) return;
+        boolean sort = false;
         for (int i = nums.length - 2; i >= 0; i--) {
-            int j = nextPermutation(nums, i, i + 1, nums.length);
-            if (j != -1) {
-                int tmp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = tmp;
+            if (nums[i] < nums[i + 1]) {
+                sort = true;
+                int j = getSwap(nums, nums[i]);
+                swap(nums, i, j);
+                Arrays.sort(nums, i + 1, nums.length);
                 break;
             }
         }
+        if (!sort) Arrays.sort(nums);
     }
 
-    private int nextPermutation(int[] nums, int start, int l, int r) {
-        if (nums[start] >= nums[r - 1]) {
-            int last = nums[start];
-            for (int i = start; i < r - 1; i++) {
-                nums[i] = nums[i + 1];
-            }
-            nums[r - 1] = last;
-            return -1;
-        } else {
-            for (int i = l; i < r; i++) {
-                if (nums[i] > nums[start]) return i;
-            }
+    private int getSwap(int[] nums, int num) {
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (nums[i] > num) return i;
         }
-        return 0;
+        return -1;
+    }
+
+    private void swap(int[] nums, int i, int j) {
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
     }
 }
