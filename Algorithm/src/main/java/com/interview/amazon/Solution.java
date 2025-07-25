@@ -37,17 +37,20 @@ public class Solution {
             int cost;
             int r = inventory.get(i);
             r = r % (dispatch1 + dispatch2) == 0 ? dispatch1 + dispatch2 : r % (dispatch1 + dispatch2);
-            cost = r <= dispatch1 ? 0 : r / dispatch1;
-            cost -= (r % dispatch1 == 0 ? 1 : 0);
+            cost = r <= dispatch1 ? 0 : (r / dispatch1 - (r % dispatch1 == 0 ? 1 : 0));
             queue.add(cost);
         }
         int res = 0;
         while (!queue.isEmpty() && skips >= queue.peek()) {
             skips -= queue.poll();
             res++;
-
         }
         return res;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Integer.MAX_VALUE);
+        System.out.println(1000000000 * 2);
     }
 
 }

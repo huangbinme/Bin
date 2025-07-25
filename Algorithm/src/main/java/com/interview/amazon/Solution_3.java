@@ -63,69 +63,6 @@ public class Solution_3 {
         return maxRes;
     }
 
-    public static void main(String[] args) {
-        List<Integer> powers = Arrays.asList(4, 3, 5, 1, 2, 2, 1);
-        List<Integer> powers1 = Arrays.asList(3, 7, 5, 1, 5);
-        List<Integer> powers3 = Arrays.asList(2, 2, 3, 2, 1, 2, 2);
-//        System.out.println(getMaxServers(powers));//5
-//        System.out.println(getMaxServers(powers1));//2
-//        System.out.println(getMaxServers(powers3));//7
-        List<List<Integer>> lists = new ArrayList<>();
-        lists.add(Arrays.asList(4, 3, 5, 1, 2, 2, 1));
-        lists.add(Arrays.asList(1, 1, 1, 1));
-        lists.add(Arrays.asList(10, 20, 30));
-        lists.add(Arrays.asList(2, 2, 2, 3, 3, 4));
-        lists.add(Arrays.asList(1, 2, 3, 4, 5));
-        lists.add(Arrays.asList(5, 4, 3, 2, 1));
-        lists.add(Arrays.asList(7));
-        lists.add(Arrays.asList(1, 3, 1, 3, 1, 3));
-        lists.add(Arrays.asList(100, 101, 102, 1, 2, 3));
-        lists.add(Arrays.asList(1, 1, 2, 2, 3, 3, 4));
-        lists.add(Arrays.asList(2, 3, 3, 4, 4, 5, 2));
-        lists.add(Arrays.asList(1, 2, 2, 3, 3, 4, 4, 5));
-        lists.add(Arrays.asList(5, 6, 7, 6, 5, 4, 3, 4, 5));
-        lists.add(Arrays.asList(1, 2, 3, 4, 1, 2, 3, 4));
-        lists.add(Arrays.asList(1, 1, 3, 3, 3, 3));
-        lists.add(Arrays.asList(1, 3, 5, 3, 1, 5, 3, 5));
-        lists.add(Arrays.asList(2, 2, 5, 5, 5));
-        lists.add(Arrays.asList(2, 4, 4, 4, 4));
-        lists.add(Arrays.asList(7, 9, 9, 9));
-        lists.add(Arrays.asList(4, 5, 5, 6, 7, 7, 8, 8, 9, 10));
-        lists.add(Arrays.asList(5, 5, 6, 7, 7));
-        lists.add(Arrays.asList(5, 6));
-        lists.add(Arrays.asList(5, 6, 7));
-        lists.add(Arrays.asList(1, 2, 5, 6, 6, 7, 8, 9, 9, 1));
-        lists.add(Arrays.asList(2, 3, 5, 5, 6, 7, 8, 1, 2, 3));
-        lists.add(Arrays.asList(4, 55, 5, 4, 3, 55, 6, 7, 6));
-        lists.add(Arrays.asList(2, 2, 1, 2, 3, 4, 5));
-        lists.add(Arrays.asList(5, 5, 5, 4, 1, 1, 1, 2, 3, 3, 3));
-        lists.add(Arrays.asList(1, 2, 2, 2, 3, 4, 4, 4, 5, 5));
-        lists.add(Arrays.asList(1, 1, 2, 3, 3, 3, 4, 5, 5, 6));
-        lists.add(Arrays.asList(2, 2, 3, 4, 4, 5, 6, 6, 6, 7));
-        lists.add(Arrays.asList(1, 2, 3, 4, 5, 5, 5, 4, 3, 2));
-        lists.add(Arrays.asList(10, 10, 11, 12, 12, 12, 11, 10, 9, 9));
-        lists.add(Arrays.asList(1, 2, 3));
-        lists.add(Arrays.asList(1, 1, 2, 3));
-        lists.add(Arrays.asList(2, 3, 4));
-        lists.add(Arrays.asList(1, 2, 2, 3));
-        lists.add(Arrays.asList(1, 2, 3, 4));
-        lists.add(Arrays.asList(1, 1, 2, 3));
-        lists.add(Arrays.asList(2, 3, 4));
-        lists.add(Arrays.asList(2, 2, 3, 4));
-        lists.add(Arrays.asList(5, 6, 7, 8));
-        lists.add(Arrays.asList(10, 11, 12, 13, 14));
-        for (List<Integer> list : lists) {
-            Integer ans = getMaxServers(list);
-            Integer ans2 = getMaxServers1(list);
-            System.out.println(list.toString() + ", ans is : " + ans);
-            if (!ans.equals(ans2)) {
-                System.out.println(list);
-                System.out.println(ans + "|" + ans2);
-                System.out.println("--------------");
-            }
-        }
-    }
-
     public static int maxCredits(List<Integer> inventory, int dispatch1, int dispatch2, int skips) {
         int n = inventory.size();
         PriorityQueue<Integer> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a));

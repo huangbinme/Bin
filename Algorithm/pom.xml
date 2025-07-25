@@ -26,6 +26,12 @@
     <artifactId>Algorithm</artifactId>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20250517</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
