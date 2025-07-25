@@ -9,7 +9,6 @@
 
     <modules>
         <module>Algorithm</module>
-        <module>Xmind</module>
         <module>JavaTech</module>
         <module>DataStructure</module>
         <module>DesignMode</module>
