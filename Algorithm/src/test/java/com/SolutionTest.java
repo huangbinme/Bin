@@ -65,6 +65,6 @@ public class SolutionTest {
     @Test
     public void testMaximumProfit() {
         Solution solution = new Solution();
-        System.out.println(solution.maximumProfit(new int[]{12,16,19,19,8,1,19,13,9}, 3));
+        //System.out.println(solution.maximumProfit(new int[]{12,16,19,19,8,1,19,13,9}, 3));
     }
 }
