@@ -18,11 +18,10 @@ public class QuickSort implements BaseSort {
     private int partition(int[] input, int low, int high) {
         int pivot = input[high];
         int l = low, r = high - 1;
-        while (true) {
+        while (l <= r) {
             while (l <= r && input[l] <= pivot) l++;
             while (l <= r && pivot <= input[r]) r--;
-            if (l > r) break;
-            swap(input, l, r);
+            if (l < r) swap(input, l, r);
         }
         swap(input, l, high);
         return l;
