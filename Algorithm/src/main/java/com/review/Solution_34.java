@@ -6,15 +6,10 @@ public class Solution_34 {
         int l = 0, r = nums.length - 1;
         while (l < r) {
             int mid = l + (r - l) / 2;
-            if (nums[mid] == target) {
-                l = mid;
-                r = mid;
-                break;
-            }
-            if (nums[l] <= target && target <= nums[mid]) {
-                r = mid;
-            } else {
+            if (nums[mid] < target) {
                 l = mid + 1;
+            } else {
+                r = mid;
             }
         }
         if (nums[l] != target) return new int[]{-1, -1};
