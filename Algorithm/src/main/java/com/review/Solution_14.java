@@ -2,24 +2,20 @@ package com.review;
 
 public class Solution_14 {
     public String longestCommonPrefix(String[] strs) {
-        String base = strs[0];
-        int ans = -1;
-        for (int i = 0; i < base.length(); i++) {
-            char c = base.charAt(i);
-            boolean match = true;
-            for (int j = 1; j < strs.length; j++) {
-                String str = strs[j];
-                if (i >= str.length() || str.charAt(i) != c) {
-                    match = false;
-                    break;
-                }
-            }
-            if (match) {
-                ans++;
-            } else {
-                break;
+        String ans = strs[0];
+        for (int i = 1; i < strs.length; i++) {
+            ans = getCommonPre(ans, strs[i]);
+        }
+        return ans;
+    }
+
+    public String getCommonPre(String s1, String s2) {
+        if (s1.isEmpty() || s2.isEmpty()) return "";
+        for (int i = 0; i < Math.min(s1.length(), s2.length()); i++) {
+            if (s1.charAt(i) != s2.charAt(i)) {
+                return s1.substring(0, i);
             }
         }
-        return ans == -1 ? "" : base.substring(0, ans + 1);
+        return s1.length() <= s2.length() ? s1 : s2;
     }
 }
