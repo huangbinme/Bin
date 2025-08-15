@@ -1,16 +1,29 @@
 package com.review;
 
 public class Solution_7 {
+
+    //2147483647
+    //-2147483648
     public int reverse(int x) {
+        if (x == 0) return 0;
+        boolean positive = x > 0;
         int ans = 0;
+        x = Math.abs(x);
         while (x != 0) {
-            int last = x % 10;
+            int appendNum = x % 10;
             x /= 10;
-            if (ans > Integer.MAX_VALUE / 10 || (ans == Integer.MAX_VALUE / 10 && last > 7)) return 0;
-            if (ans < Integer.MIN_VALUE / 10 || (ans == Integer.MIN_VALUE / 10 && last < -8)) return 0;
+            if (outOfBounds(ans, appendNum, positive)) return 0;
             ans *= 10;
-            ans += last;
+            ans += appendNum;
         }
-        return ans;
+        return ans * (positive ? 1 : -1);
+    }
+
+    public boolean outOfBounds(int i, int j, boolean positive) {
+        if (positive) {
+            return i * 10 < 0 || i > 214748364 || (i == 214748364 && j > 7);
+        } else {
+            return i * 10 < 0 || i > 214748364 || (i == 214748364 && j > 8);
+        }
     }
 }
