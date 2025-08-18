@@ -1,9 +1,6 @@
 package com.review;
 
 public class Solution_7 {
-
-    //2147483647
-    //-2147483648
     public int reverse(int x) {
         if (x == 0) return 0;
         boolean positive = x > 0;
