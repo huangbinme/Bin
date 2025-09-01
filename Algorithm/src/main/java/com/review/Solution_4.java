@@ -2,25 +2,21 @@ package com.review;
 
 public class Solution_4 {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        //0 1 2 3
-        // 1 2
-        //0 1 2 3 4
-        // 2 2
-//        int sumLength = nums1.length + nums2.length;
-//        int findR = sumLength / 2, findL = sumLength % 2 == 0 ? findR - 1 : findR;
-//        int n1P = -1, n2P = -1;
-//        for (int i = 0; i <= findR; i++) {
-//            if (nums1[n1P + 1] <= nums2[n2P + 1]) {
-//                n1P++;
-//            } else {
-//                n2P++;
-//            }
-//        }
-//        if (findR == findL) {
-//            if(n1P == -1 || n2P == -1) return
-//        }else {
-//
-//        }
-        return 0;
+        int n1 = Integer.MIN_VALUE, n2 = Integer.MIN_VALUE;
+        int sumLength = nums1.length + nums2.length;
+        int p1 = 0, p2 = 0;
+        for (int i = 0; i < sumLength / 2 + 1; i++) {
+            int j = p1 < nums1.length ? nums1[p1] : Integer.MAX_VALUE;
+            int k = p2 < nums2.length ? nums2[p2] : Integer.MAX_VALUE;
+            if (j <= k) {
+                p1++;
+            } else {
+                p2++;
+            }
+            int curNum = Math.min(j, k);
+            n1 = n2;
+            n2 = curNum;
+        }
+        return sumLength % 2 == 0 ? ((double) n1 + n2) / 2 : n2;
     }
 }
