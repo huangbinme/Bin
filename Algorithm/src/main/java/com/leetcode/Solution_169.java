@@ -2,20 +2,19 @@ package com.leetcode;
 
 public class Solution_169 {
     public int majorityElement(int[] nums) {
-        int m = nums[0];
-        int count = 1;
+        int c = 1, n = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            if (nums[i] == m) {
-                count++;
+            if (c == 0) {
+                n = nums[i];
+                c++;
             } else {
-                count--;
-                if (count == 0 && i != nums.length - 1) {
-                    m = nums[i + 1];
-                    i++;
-                    count = 1;
+                if (n == nums[i]) {
+                    c++;
+                } else {
+                    c--;
                 }
             }
         }
-        return m;
+        return n;
     }
 }
